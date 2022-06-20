@@ -10,7 +10,15 @@
 		<div class="form-group row">
 			<label for="inputKodeKelas" class="col-sm-2 col-form-label">Kelas</label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control" id="inputKodeKelas" name="kode_kelas" placeholder="Kode Kelas" value="<?= $kode_kelas ?>">
+				<?php 
+				if ($readonly == "found") {
+					$isReadonly = " readonly";
+				} else {
+					$isReadonly = "";
+				}
+
+				?>
+				<input type="text" class="form-control" id="inputKodeKelas" name="kode_kelas" placeholder="Kode Kelas" value="<?= $kode_kelas ?>" <?= $isReadonly ?>>
 			</div>
 		</div>
 		<div class="form-group row">

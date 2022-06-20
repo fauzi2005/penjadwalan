@@ -1,6 +1,12 @@
 <?php
-require "config/functions.php";
-require "config/koneksi.php";
+session_start();
+
+require "../config/functions.php";
+require "../config/koneksi.php";
+
+$pageName = 'data-kelas-add';
+
+$readonly = "";
 
 $list_jurusan = get_data_jurusan();
 
@@ -38,7 +44,8 @@ if(isset($_POST['submit']))
 
 		if ($hasil)
 		{
-			$url = BASE_URL . 'data-kelas.php';
+			$url = BASE_URL . 'data-kelas/';
+			$_SESSION['sessionAlert'] = "Data berhasil ditambah !!";
 			header("Location: $url");
 		} else
 		{
@@ -58,47 +65,47 @@ if(isset($_POST['submit']))
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>SMKN 19 Jakarta | Data Kelas</title>
-	<link rel="icon" type="image/x-icon" href="assets/img/tutwurihandayani-logo.png">
+	<link rel="icon" type="image/x-icon" href="<?= BASE_URL ?>assets/img/tutwurihandayani-logo.png">
 
 	<!-- Google Font: Source Sans Pro -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 	<!-- Font Awesome -->
-	<link rel="stylesheet" href="assets/plugins/fontawesome-free/css/all.min.css">
+	<link rel="stylesheet" href="<?= BASE_URL ?>assets/plugins/fontawesome-free/css/all.min.css">
 	<!-- Ionicons -->
 	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 	<!-- Tempusdominus Bootstrap 4 -->
-	<link rel="stylesheet" href="assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+	<link rel="stylesheet" href="<?= BASE_URL ?>assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
 	<!-- iCheck -->
-	<link rel="stylesheet" href="assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+	<link rel="stylesheet" href="<?= BASE_URL ?>assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
 	<!-- JQVMap -->
-	<link rel="stylesheet" href="assets/plugins/jqvmap/jqvmap.min.css">
+	<link rel="stylesheet" href="<?= BASE_URL ?>assets/plugins/jqvmap/jqvmap.min.css">
 	<!-- SweetAlert2 -->
-	<link rel="stylesheet" href="assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+	<link rel="stylesheet" href="<?= BASE_URL ?>assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 	<!-- Toastr -->
-	<link rel="stylesheet" href="assets/plugins/toastr/toastr.min.css">
+	<link rel="stylesheet" href="<?= BASE_URL ?>assets/plugins/toastr/toastr.min.css">
 	<!-- Theme style -->
-	<link rel="stylesheet" href="assets/css/adminlte.min.css">
+	<link rel="stylesheet" href="<?= BASE_URL ?>assets/css/adminlte.min.css">
 	<!-- overlayScrollbars -->
-	<link rel="stylesheet" href="assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+	<link rel="stylesheet" href="<?= BASE_URL ?>assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 	<div class="wrapper">
 
 		<!-- Preloader -->
 		<div class="preloader flex-column justify-content-center align-items-center">
-			<img class="animation__shake" src="assets/img/tutwurihandayani-logo.png" alt="Tutwuri Handayani Logo" height="260" width="260">
-		</div>
+			<img class="animation__shake" src="<?= BASE_URL ?>assets/img/tutwurihandayani-logo.png" alt="Tutwuri Handayani Logo" height="260" width="260">	</div>
 
 
+	
 		<!-- -------------------Navbar / Header------------------- -->
 		<?php 
-		include "layouts/header.php";
+		include "../layouts/header.php";
 		?>
 		<!-- -------------------END Navbar / Header------------------- -->
 
 		<!-- -------------------Sidebar------------------- -->
 		<?php 
-		include "layouts/sidebar.php";
+		include "../layouts/sidebar.php";
 		?>
 		<!-- -------------------END Sidebar------------------- -->
 
@@ -156,7 +163,7 @@ if(isset($_POST['submit']))
 
 			<!-- footer -->
 			<?php 
-			include "layouts/footer.php";
+			include "../layouts/footer.php";
 			?>
 
 
@@ -164,25 +171,25 @@ if(isset($_POST['submit']))
 		<!-- ./wrapper -->
 
 	<!-- jQuery -->
-	<script src="assets/plugins/jquery/jquery.min.js"></script>
+	<script src="<?= BASE_URL ?>assets/plugins/jquery/jquery.min.js"></script>
 	<!-- jQuery UI 1.11.4 -->
-	<script src="assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+	<script src="<?= BASE_URL ?>assets/plugins/jquery-ui/jquery-ui.min.js"></script>
 	<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 	<script>
 		$.widget.bridge('uibutton', $.ui.button)
 	</script>
 	<!-- Bootstrap 4 -->
-	<script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="<?= BASE_URL ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<!-- SweetAlert2 -->
-	<script src="assets/plugins/sweetalert2/sweetalert2.min.js"></script>
+	<script src="<?= BASE_URL ?>assets/plugins/sweetalert2/sweetalert2.min.js"></script>
 	<!-- Toastr -->
-	<script src="assets/plugins/toastr/toastr.min.js"></script>
+	<script src="<?= BASE_URL ?>assets/plugins/toastr/toastr.min.js"></script>
 	<!-- daterangepicker -->
-	<script src="assets/plugins/moment/moment.min.js"></script>
-	<script src="assets/plugins/daterangepicker/daterangepicker.js"></script>
+	<script src="<?= BASE_URL ?>assets/plugins/moment/moment.min.js"></script>
+	<script src="<?= BASE_URL ?>assets/plugins/daterangepicker/daterangepicker.js"></script>
 	<!-- overlayScrollbars -->
-	<script src="assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+	<script src="<?= BASE_URL ?>assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 	<!-- AdminLTE App -->
-	<script src="assets/js/adminlte.js"></script>
+	<script src="<?= BASE_URL ?>assets/js/adminlte.js"></script>
 </body>
 </html>

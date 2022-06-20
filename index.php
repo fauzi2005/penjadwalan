@@ -1,3 +1,7 @@
+<?php
+$pageName = "dashboard";
+require "config/functions.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
