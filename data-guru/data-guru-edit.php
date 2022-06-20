@@ -201,7 +201,7 @@ if($data_found && isset($_POST['submit']))
 					</div>
 					<!-- /.row -->
 				</div><!-- /.container-fluid -->
-				</	section>
+				</section>
 				<!-- /.content -->
 			</div>
 			<!-- /.content-wrapper -->

@@ -38,7 +38,8 @@
 				$menuOpen = "";
 				$headMenuActive = "";
 				if ($pageName == "data-kelas-add" || $pageName == "data-kelas-edit" || $pageName == "data-kelas" ||
-					$pageName == "data-guru-add" || $pageName == "data-guru-edit" || $pageName == "data-guru") {
+					$pageName == "data-guru-add" || $pageName == "data-guru-edit" || $pageName == "data-guru" ||
+					$pageName == "data-mapel-add" || $pageName == "data-mapel-edit" || $pageName == "data-mapel") {
 					$menuOpen = "menu-open";
 					$headMenuActive = "active";
 				}
@@ -74,7 +75,13 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="pages/forms/editors.html" class="nav-link">
+							<?php
+							$subMenuActive = "";
+							if ($pageName == "data-mapel-add" || $pageName == "data-mapel-edit" || $pageName == "data-mapel") {
+								$subMenuActive = "active";
+							}
+							?>
+							<a href="<?= BASE_URL . 'data-mapel/' ?>" class="nav-link <?= $subMenuActive ?>">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Data Mata Pelajaran</p>
 							</a>
@@ -93,14 +100,29 @@
 						</li>
 					</ul>
 				</li>
-				<li class="nav-item">
-					<a href="#" class="nav-link">
+
+				<?php
+				$menuOpen = "";
+				$headMenuActive = "";
+				if ($pageName == "data-guru-mapel-add" || $pageName == "data-guru-mapel-edit" || $pageName == "data-guru-mapel") {
+					$menuOpen = "menu-open";
+					$headMenuActive = "active";
+				}
+				?>
+				<li class="nav-item <?= $menuOpen ?>">
+					<a href="#" class="nav-link <?= $headMenuActive ?>">
 						<i class="nav-icon fas fa-edit"></i>
 						<p>Data Transaction<i class="fas fa-angle-left right"></i></p>
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="pages/examples/invoice.html" class="nav-link">
+							<?php
+							$subMenuActive = "";
+							if ($pageName == "data-guru-mapel-add" || $pageName == "data-guru-mapel-edit" || $pageName == "data-guru-mapel") {
+								$subMenuActive = "active";
+							}
+							?>
+							<a href="<?= BASE_URL . 'data-guru-mapel/' ?>" class="nav-link <?= $subMenuActive ?>">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Data Guru Mata Pelajaran</p>
 							</a>
