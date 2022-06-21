@@ -39,7 +39,8 @@
 				$headMenuActive = "";
 				if ($pageName == "data-kelas-add" || $pageName == "data-kelas-edit" || $pageName == "data-kelas" ||
 					$pageName == "data-guru-add" || $pageName == "data-guru-edit" || $pageName == "data-guru" ||
-					$pageName == "data-mapel-add" || $pageName == "data-mapel-edit" || $pageName == "data-mapel") {
+					$pageName == "data-mapel-add" || $pageName == "data-mapel-edit" || $pageName == "data-mapel" ||
+					$pageName == "data-hari-sesi-add" || $pageName == "data-hari-sesi-edit" || $pageName == "data-hari-sesi") {
 					$menuOpen = "menu-open";
 					$headMenuActive = "active";
 				}
@@ -87,15 +88,15 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="pages/forms/validation.html" class="nav-link">
+							<?php
+							$subMenuActive = "";
+							if ($pageName == "data-hari-sesi-add" || $pageName == "data-hari-sesi-edit" || $pageName == "data-hari-sesi") {
+								$subMenuActive = "active";
+							}
+							?>
+							<a href="<?= BASE_URL . 'data-hari-sesi/' ?>" class="nav-link <?= $subMenuActive ?>">
 								<i class="far fa-circle nav-icon"></i>
-								<p>Data Sesi</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="pages/forms/validation.html" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Data Hari</p>
+								<p>Data Hari & Sesi</p>
 							</a>
 						</li>
 					</ul>

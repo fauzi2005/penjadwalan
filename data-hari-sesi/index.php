@@ -1,33 +1,23 @@
 <?php 
 session_start();
 
-require "../config/site-name.php";
 require "../config/koneksi.php";
 require "../config/functions.php";
 
 $isSuccess = FALSE;
 
-$pageName = "data-guru-mapel";
+$pageName = "data-hari-sesi";
 
 $conn = open_connection();
 
-// $query = ("SELECT tb_guru_mapel.kode_gmp, tb_guru.nama_guru, tb_mapel.nama_mapel, tb_jurusan.nama_jurusan FROM tb_guru_mapel
-// 	INNER JOIN tb_guru
-// 	ON tb_guru_mapel.kode_guru = tb_guru.kode_guru
-// 	INNER JOIN tb_mapel
-// 	ON tb_guru_mapel.kode_mapel = tb_mapel.kode_mapel
-// 	INNER JOIN tb_jurusan
-// 	ON tb_guru_mapel.kode_jurusan_mapel = tb_jurusan.nama_jurusan");
+// DATA HARI
+$queryHari = ("SELECT * FROM tb_hari ORDER BY kode_hari ASC");
+$dataHari = mysqli_query($conn, $queryHari);
 
-$query = ("SELECT tb_guru_mapel.kode_gmp, tb_guru.nama_guru, tb_mapel.nama_mapel, tb_jurusan.nama_jurusan FROM tb_guru_mapel
-	INNER JOIN tb_guru
-	ON tb_guru_mapel.kode_guru = tb_guru.kode_guru
-	INNER JOIN tb_mapel
-	ON tb_guru_mapel.kode_mapel = tb_mapel.kode_mapel
-	INNER JOIN tb_jurusan
-	ON tb_guru_mapel.kode_jurusan_mapel = tb_jurusan.kode_jurusan");
+// DATA SESI
+$querySesi = ("SELECT * FROM tb_sesi ORDER BY id ASC");
+$dataSesi = mysqli_query($conn, $querySesi);
 
-$dataGuruMapel = mysqli_query($conn, $query);
 $i = 1;
 
 ?>
@@ -37,7 +27,7 @@ $i = 1;
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Data Mata Pelajaran | <?= $siteName ?></title>
+	<title>SMKN 19 Jakarta | Data Kelas</title>
 	<link rel="icon" type="image/x-icon" href="../assets/img/tutwurihandayani-logo.png">
 
 	<!-- Google Font: Source Sans Pro -->
@@ -152,12 +142,12 @@ $i = 1;
 					<div class="row mb-2">
 						<div class="col-sm-6">
 							<!-- Judul Pages -->
-							<h1 class="m-0">Data Mata Pelajaran</h1>
+							<h1 class="m-0">Data Kelas</h1>
 						</div>
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
 								<li class="breadcrumb-item"><a href="#">Home</a></li>
-								<li class="breadcrumb-item active">Data Mata Pelajaran</li>
+								<li class="breadcrumb-item active">Data Kelas</li>
 							</ol>
 						</div>
 					</div>
@@ -172,43 +162,84 @@ $i = 1;
 				<div class="container-fluid">
 					<!-- Small boxes (Stat box) -->
 					<div class="row">
-						<div class="col-12">
+						<div class="col-4">
 							<div class="card">
 								<div class="card-header">
-									<h3 class="card-title">List Data Mata Pelajaran</h3>
+									<h3 class="card-title">List Data Hari</h3>
 								</div>
 								<!-- /.card-header -->
 								<div class="card-body">
 									<div class="card-title">
-										<!-- <a href="data-guru-mapel-add.php" title="Data Mata Pelajaran Add" class="btn btn-primary">Tambah Data Mata Pelajaran</a> -->
-										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
-											Tambah Data Mata Pelajaran
-										</button>
+										<!-- <a href="data-kelas-add.php" title="Data Kelas Add" class="btn btn-primary">Tambah Data Kelas</a> -->
+										<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-add">
+											Add Data Kelas
+										</button> -->
 									</div>
 									<br><br>
-									<table id="example1" class="table table-bordered table-striped">
+									<table id="tableHari" class="table table-bordered table-striped">
 										<thead>
 											<tr>
-												<!-- <th>Kode Mata Pelajaran</th> -->
-												<th>Nama Guru</th>
-												<th>Mata Pelajaran</th>
-												<th>Jurusan</th>
-												<th>Action</th>
+												<th>Kode Kode</th>
+												<th>Nama Hari</th>
 											</tr>
 										</thead>
 										<tbody>
-											<?php foreach ($dataGuruMapel as $guruMapel) : ?>
+											<?php foreach ($dataHari as $hari) : ?>
 												<tr>
-													<!-- <td><?= $guruMapel["kode_mapel"]; ?></td> -->
-													<td><?= $guruMapel["nama_guru"]; ?></td>
-													<td><?= $guruMapel["nama_mapel"]; ?></td>
-													<td><?= $guruMapel["nama_jurusan"]; ?></td>
-													
+													<td><?= $hari["kode_hari"]; ?></td>
+													<td><?= $hari["nama_hari"]; ?></td>
+													<!-- <td><?= $hari["nama_jurusan"]; ?></td>
 													<td>
-														<a href="<?= BASE_URL . 'data-guru-mapel/data-guru-mapel-edit.php?kode_gmp=' . $guruMapel["kode_gmp"] ?>" title="Edit" class="btn btn-warning">EDIT</a>
-														<a href="<?= BASE_URL . 'data-guru-mapel/data-guru-mapel-delete.php?kode_gmp=' . $guruMapel["kode_gmp"] ?>" title="Delete" class="btn btn-danger" onclick="return confirm('Apakah kamu yakin ingin menghapus data ini?');">DELETE</a>
-													</td>
+														<a href="<?= BASE_URL . 'data-kelas/data-kelas-edit.php?kode_kelas=' . $kelas["kode_kelas"] ?>" title="Edit" class="btn btn-warning">EDIT</a>
+														<a href="<?= BASE_URL . 'data-kelas/data-kelas-delete.php?kode_kelas=' . $kelas["kode_kelas"] ?>" title="Delete" class="btn btn-danger" onclick="return confirm('Apakah kamu yakin ingin menghapus data ini?');">DELETE</a>
+													</td> -->
 												</tr>
+
+											<?php endforeach; ?>
+										</tbody>
+									</table>
+								</div>
+								<!-- /.card-body -->
+							</div>
+							<!-- ./col -->
+						</div>
+						<div class="col-8">
+							<div class="card">
+								<div class="card-header">
+									<h3 class="card-title">List Data Sesi</h3>
+								</div>
+								<!-- /.card-header -->
+								<div class="card-body">
+									<div class="card-title">
+										<!-- <a href="data-kelas-add.php" title="Data Kelas Add" class="btn btn-primary">Tambah Data Kelas</a> -->
+										<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-add">
+											Add Data Kelas
+										</button> -->
+									</div>
+									<br><br>
+									<table id="tableHari" class="table table-bordered table-striped">
+										<thead>
+											<tr>
+												<th>Sesi</th>
+												<th>Jam Mulai</th>
+												<th>Jam Selesai</th>
+												<th>Durasi Sesi</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php foreach ($dataSesi as $sesi) : ?>
+												<tr>
+													<td><?= $sesi["sesi"]; ?></td>
+													<td><?= $sesi["jam_mulai"]; ?> WIB</td>
+													<td><?= $sesi["jam_selesai"]; ?> WIB</td>
+													<td><?= $sesi["durasi_sesi"]; ?></td>
+													<!-- <td><?= $hari["nama_jurusan"]; ?></td>
+													<td>
+														<a href="<?= BASE_URL . 'data-kelas/data-kelas-edit.php?kode_kelas=' . $kelas["kode_kelas"] ?>" title="Edit" class="btn btn-warning">EDIT</a>
+														<a href="<?= BASE_URL . 'data-kelas/data-kelas-delete.php?kode_kelas=' . $kelas["kode_kelas"] ?>" title="Delete" class="btn btn-danger" onclick="return confirm('Apakah kamu yakin ingin menghapus data ini?');">DELETE</a>
+													</td> -->
+												</tr>
+
 											<?php endforeach; ?>
 										</tbody>
 									</table>
@@ -233,56 +264,6 @@ $i = 1;
 
 	</div>
 	<!-- ./wrapper -->
-
-	<div class="modal fade" id="modal-lg">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title">Pilih Jurusan Mata Pelajaran Guru</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<p>Note :<br><i class="text-danger">*Pilih jurusan yang ingin ditambahkan ke dalam mata pelajaran guru.</i></p>
-					<!-- form start -->
-					<form class="form-horizontal" method="GET" action="<?= BASE_URL . 'data-guru-mapel/data-guru-mapel-add.php'?>">
-						<div class="form-group row">
-							<label for="inputKategoriJurusanMapel" class="col-sm-4 col-form-label">Kategori Mata Pelajaran</label>
-							<div class="col-sm-8">
-								<select class="form-control" name="kategori_jurusan_mapel" required>
-									<option value="">-- Pilih Kategori Mata Pelajaran --</option>
-									<?php
-									$list_jurusan = get_data_jurusan();
-									if (count($list_jurusan) > 0) {
-										foreach ($list_jurusan as $kode => $nama) {
-											$terpilih = '';
-											// if ($kategori_mapel == $kode) {
-											// 	$terpilih = " selected";
-											// }
-											echo "<option value='$kode' $terpilih>$nama</option>";
-										}
-									}
-									?>
-								</select>
-							</div>
-						</div>
-						<div class="text-center card-footer">
-							<button type="submit" class="btn btn-info" name="next" value="TRUE">Next</button>
-							<!-- <button type="reset" class="btn btn-default">Reset</button> -->
-						</div>
-					</form>
-				</div>
-				<!-- <div class="modal-footer justify-content-between">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
-				</div> -->
-			</div>
-			<!-- /.modal-content -->
-		</div>
-		<!-- /.modal-dialog -->
-	</div>
-	<!-- /.modal -->
 
 	<!-- jQuery -->
 	<script src="../assets/plugins/jquery/jquery.min.js"></script>

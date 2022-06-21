@@ -3,20 +3,20 @@ session_start();
 require "../config/functions.php";
 require "../config/koneksi.php";
 
-$kode_gmp = $_GET['kode_gmp'];
+$kode_kelas = $_GET['kode_kelas'];
 
 $conn = open_connection();
 
-$query = "DELETE FROM tb_guru_mapel WHERE kode_gmp = '$kode_gmp'";
+$query = "DELETE FROM tb_kelas WHERE kode_kelas = '$kode_kelas'";
 
 $result = mysqli_query($conn, $query);
 
 if ($result) {
-	$url = BASE_URL . 'data-guru-mapel/';
+	$url = BASE_URL . 'data-kelas/';
 	$_SESSION['sessionAlert'] = "Data berhasil dihapus !!";
 	header("Location: $url");
 } else {
-	echo "Gagal menghapus data $kode_gmp : " . mysqli_error($conn);
+	echo "Gagal menghapus data $kode_kelas : " . mysqli_error($conn);
 }
 
 ?>

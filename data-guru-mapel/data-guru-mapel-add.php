@@ -9,8 +9,8 @@ $pageName = 'data-guru-mapel-add';
 
 $readonly = "";
 
-if (isset($_POST['next'])) {
-	$kategori_jurusan_mapel = $_POST['kategori_jurusan_mapel'];
+if (isset($_GET['next'])) {
+	$kategori_jurusan_mapel = $_GET['kategori_jurusan_mapel'];
 
 	$conn = open_connection();
 
@@ -24,6 +24,22 @@ $list_guru = get_data_guru();
 $kode_gmp 		= $_POST['kode_gmp'] ?? '';
 $kode_guru 		= $_POST['kode_guru'] ?? '';
 $kode_mapel 	= $_POST['kode_mapel'] ?? '';
+// $kode_jurusan_mapel = 2;
+if ($kode_mapel > 0 ) {
+	$conn = open_connection();
+	$queryKodeJM = "SELECT * FROM tb_mapel";
+	$resultKodeJM = mysqli_query($conn, $queryKodeJM);
+
+	while($kode_jur_mapel = mysqli_fetch_assoc($resultKodeJM)) {
+		$kode_mapel_two = $kode_jur_mapel["kode_mapel"];
+		$kode_jurusan = $kode_jur_mapel["kategori_mapel"];
+
+		if ($kode_mapel == $kode_mapel_two) {
+			$kode_jurusan_mapel = $kode_jurusan;
+		}
+	}
+	
+}
 
 $isError = FALSE;
 $error = '';
@@ -46,10 +62,10 @@ if(isset($_POST['submit']))
 
 	// Jika tidak ada salah input, maka simpan data ke dalam database
 	if (!$isError) {
-		$conn = open_connection();
+		// $conn = open_connection();
 		$query = "INSERT INTO 
-					tb_guru_mapel (kode_gmp, kode_guru, kode_mapel)
-					VALUES ('$kode_gmp', '$kode_guru', '$kode_mapel')";
+					tb_guru_mapel (kode_gmp, kode_guru, kode_mapel, kode_jurusan_mapel)
+					VALUES ('$kode_gmp', '$kode_guru', '$kode_mapel', '$kode_jurusan_mapel')";
 
 		$hasil = mysqli_query($conn, $query);
 

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 21, 2022 at 11:47 AM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 8.0.3
+-- Generation Time: Jun 20, 2022 at 07:43 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -55,42 +55,16 @@ INSERT INTO `tb_guru` (`kode_guru`, `nip_guru`, `nama_guru`, `gelar_guru`, `gend
 CREATE TABLE `tb_guru_mapel` (
   `kode_gmp` int(11) NOT NULL,
   `kode_guru` varchar(100) NOT NULL,
-  `kode_mapel` varchar(100) NOT NULL,
-  `kode_jurusan_mapel` varchar(20) NOT NULL
+  `kode_mapel` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tb_guru_mapel`
 --
 
-INSERT INTO `tb_guru_mapel` (`kode_gmp`, `kode_guru`, `kode_mapel`, `kode_jurusan_mapel`) VALUES
-(19, 'aads123', '37', '3'),
-(20, 's2ish', '51', '1'),
-(21, 'aads123', '72', '4'),
-(22, 's2ish', '27', '3'),
-(23, 'aads123', '26', '3');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tb_hari`
---
-
-CREATE TABLE `tb_hari` (
-  `kode_hari` varchar(10) NOT NULL,
-  `nama_hari` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tb_hari`
---
-
-INSERT INTO `tb_hari` (`kode_hari`, `nama_hari`) VALUES
-('h1', 'Senin'),
-('h2', 'Selasa'),
-('h3', 'Rabu'),
-('h4', 'Kamis'),
-('h5', 'Jumat');
+INSERT INTO `tb_guru_mapel` (`kode_gmp`, `kode_guru`, `kode_mapel`) VALUES
+(1, 's2ish', '56'),
+(2, 's2ish', '56');
 
 -- --------------------------------------------------------
 
@@ -124,20 +98,6 @@ CREATE TABLE `tb_kelas` (
   `kelas` varchar(5) NOT NULL,
   `jurusan` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tb_kelas`
---
-
-INSERT INTO `tb_kelas` (`kode_kelas`, `kelas`, `jurusan`) VALUES
-('10ap', '10', '1'),
-('11ap', '11', '1'),
-('10pm', '10', '4'),
-('11pm', '11', '4'),
-('10ak', '10', '2'),
-('11ak', '11', '2'),
-('10mm', '10', '3'),
-('11mm', '11', '3');
 
 -- --------------------------------------------------------
 
@@ -243,38 +203,6 @@ INSERT INTO `tb_mapel` (`kode_mapel`, `nama_mapel`, `kategori_mapel`) VALUES
 (85, 'Administrasi Transaksi', '4'),
 (86, 'Produk Kreatif dan Kewirausahaan', '4');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `tb_sesi`
---
-
-CREATE TABLE `tb_sesi` (
-  `id` int(11) NOT NULL,
-  `kode_sesi` varchar(10) NOT NULL,
-  `sesi` varchar(20) NOT NULL,
-  `jam_mulai` time NOT NULL,
-  `jam_selesai` time NOT NULL,
-  `durasi_sesi` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tb_sesi`
---
-
-INSERT INTO `tb_sesi` (`id`, `kode_sesi`, `sesi`, `jam_mulai`, `jam_selesai`, `durasi_sesi`) VALUES
-(4, 'rest1', 'Istirahat', '09:15:00', '09:30:00', '0 Jam 15 Menit'),
-(8, 'rest2', 'Istirahat', '11:45:00', '12:45:00', '1 Jam 0 Menit'),
-(1, 'sesi1', '1', '07:00:00', '07:45:00', '0 Jam 45 Menit'),
-(2, 'sesi2', '2', '07:45:00', '08:30:00', '0 Jam 45 Menit'),
-(3, 'sesi3', '3', '08:30:00', '09:15:00', '0 Jam 45 Menit'),
-(5, 'sesi4', '4', '09:30:00', '10:15:00', '0 Jam 45 Menit'),
-(6, 'sesi5', '5', '10:15:00', '11:00:00', '0 Jam 45 Menit'),
-(7, 'sesi6', '6', '11:00:00', '11:45:00', '0 Jam 45 Menit'),
-(9, 'sesi7', '7', '12:45:00', '13:30:00', '0 Jam 45 Menit'),
-(10, 'sesi8', '8', '13:30:00', '14:15:00', '0 Jam 45 Menit'),
-(11, 'sesi9', '9', '14:15:00', '15:00:00', '0 Jam 45 Menit');
-
 --
 -- Indexes for dumped tables
 --
@@ -292,12 +220,6 @@ ALTER TABLE `tb_guru_mapel`
   ADD PRIMARY KEY (`kode_gmp`);
 
 --
--- Indexes for table `tb_hari`
---
-ALTER TABLE `tb_hari`
-  ADD PRIMARY KEY (`kode_hari`);
-
---
 -- Indexes for table `tb_jurusan`
 --
 ALTER TABLE `tb_jurusan`
@@ -310,12 +232,6 @@ ALTER TABLE `tb_mapel`
   ADD PRIMARY KEY (`kode_mapel`);
 
 --
--- Indexes for table `tb_sesi`
---
-ALTER TABLE `tb_sesi`
-  ADD PRIMARY KEY (`kode_sesi`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -323,7 +239,7 @@ ALTER TABLE `tb_sesi`
 -- AUTO_INCREMENT for table `tb_guru_mapel`
 --
 ALTER TABLE `tb_guru_mapel`
-  MODIFY `kode_gmp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `kode_gmp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tb_jurusan`

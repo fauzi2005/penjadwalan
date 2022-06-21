@@ -1,0 +1,12 @@
+kode_sesi;Sesi;jam_mulai;jam_selesai;durasi
+sesi1;1;07:00;07:45;0 Jam 45 Menit
+sesi2;2;07:45;08:30;0 Jam 45 Menit
+sesi3;3;08:30;09:15;0 Jam 45 Menit
+rest1;Istirahat;09:15;09:30;0 Jam 15 Menit
+sesi4;4;09:30;10:15;0 Jam 45 Menit
+sesi5;5;10:15;11:00;0 Jam 45 Menit
+sesi6;6;11:00;11:45;0 Jam 45 Menit
+rest2;Istirahat;11:45;12:45;1 Jam 0 Menit
+sesi7;7;12:45;13:30;0 Jam 45 Menit
+sesi8;8;13:30;14:15;0 Jam 45 Menit
+sesi9;9;14:15;15:00;0 Jam 45 Menit

@@ -17,11 +17,11 @@
 					<?php
 					if (count($list_guru) > 0) {
 						foreach ($list_guru as $kode => $nama) {
-							// $terpilih = '';
-							// if ($kategori_mapel == $kode) {
-							// 	$terpilih = " selected";
-							// }
-							echo "<option value='$kode'>$nama</option>";
+							$terpilih = '';
+							if ($kode_guru == $kode) {
+								$terpilih = " selected";
+							}
+							echo "<option value='$kode' $terpilih>$nama</option>";
 						}
 					}
 					?>
@@ -29,18 +29,23 @@
 			</div>
 		</div>
 		<div class="form-group row">
-			<label for="inputGuruMapel" class="col-sm-2 col-form-label">Pilih Guru</label>
+			<label for="inputGuruMapel" class="col-sm-2 col-form-label">Pilih Mata Pelajaran</label>
 			<div class="col-sm-10">
 				<select class="form-control" name="kode_mapel">
-					<option value="">-- Pilih Guru --</option>
+					<option value="">-- Pilih Mata Pelajaran --</option>
 					<?php
 					// if (count($list_guru) > 0) {
 					while($rowGuru = mysqli_fetch_assoc($resultJurusanMapel)) {
-						$kode_mapel = $rowGuru['kode_mapel'];
+						$kode_mapel_guru = $rowGuru['kode_mapel'];
 						$nama_mapel = $rowGuru['nama_mapel'];
 						$kategori_mapel = $rowGuru['nama_jurusan'];
 
-						echo "<option value='$kode_mapel'>$kategori_mapel - $nama_mapel</option>";
+						$terpilih_two = '';
+						if ($kode_mapel == $kode_mapel_guru) {
+							$terpilih_two = " selected";
+						}
+
+						echo "<option value='$kode_mapel_guru' $terpilih_two>$kategori_mapel - $nama_mapel</option>";
 					}
 					?>
 				</select>
