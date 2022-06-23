@@ -1,9 +1,9 @@
 <?php 
-session_start();
-
 require "../config/site-name.php";
 require "../config/koneksi.php";
 require "../config/functions.php";
+
+check_login();
 
 $isSuccess = FALSE;
 
@@ -37,7 +37,7 @@ $i = 1;
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Data Mata Pelajaran | <?= $siteName ?></title>
+	<title>Data Guru Mata Pelajaran | <?= $siteName ?></title>
 	<link rel="icon" type="image/x-icon" href="../assets/img/tutwurihandayani-logo.png">
 
 	<?php 

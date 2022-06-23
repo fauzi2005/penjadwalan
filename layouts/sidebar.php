@@ -10,10 +10,10 @@
 		<!-- Sidebar user panel (optional) -->
 		<div class="user-panel mt-3 pb-3 mb-3 d-flex">
 			<div class="image">
-				<img src="<?= BASE_URL . 'assets/img/user2-160x160.jpg'?>" class="img-circle elevation-2" alt="User Image">
+				<img src="<?= BASE_URL . 'assets/upload/foto-user/' . $_SESSION['foto_user'] ?>" class="img-circle elevation-2" alt="User Image">
 			</div>
 			<div class="info">
-				<a href="#" class="d-block">Alexander Pierce</a>
+				<a href="#" class="d-block"><?= $_SESSION['nama_user'] ?></a>
 			</div>
 		</div>
 
@@ -129,7 +129,7 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="pages/examples/profile.html" class="nav-link">
+							<a href="#" class="nav-link">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Data Penjadwalan</p>
 							</a>
@@ -146,7 +146,7 @@
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="pages/charts/chartjs.html" class="nav-link">
+							<a href="#" class="nav-link">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Jadwal Mata Pelajaran</p>
 							</a>
@@ -157,7 +157,7 @@
 				<br><br>
 
 				<li class="nav-item">
-					<a href="./index.php" class="nav-link bg-danger">
+					<a href="<?= BASE_URL . 'logout/' ?>" class="nav-link bg-danger">
 						<i class="nav-icon fas fa-sign-out-alt"></i>
 						<p>Log Out</p>
 					</a>

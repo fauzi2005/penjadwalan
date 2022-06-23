@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 23, 2022 at 07:13 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.12
+-- Generation Time: Jun 21, 2022 at 11:47 AM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 8.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -43,6 +43,7 @@ CREATE TABLE `tb_guru` (
 --
 
 INSERT INTO `tb_guru` (`kode_guru`, `nip_guru`, `nama_guru`, `gelar_guru`, `gender_guru`, `alamat_guru`, `no_hp_guru`, `email_guru`) VALUES
+('aads123', '12312', 'SAdkjajd', 'akjsdkja', 'Perempuan', 'Sadad', '918238', 'kasjdkja@kasdkja.asjdas'),
 ('s2ish', '123112312', 'Fauzi Maulana Habibi', 'S.Kom', 'Perempuan', 'Kp. Pertanian Utara No.10A RT008 RW01, Kel. Klende', '085776509645', '1212@sdasd.asa');
 
 -- --------------------------------------------------------
@@ -57,6 +58,17 @@ CREATE TABLE `tb_guru_mapel` (
   `kode_mapel` varchar(100) NOT NULL,
   `kode_jurusan_mapel` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tb_guru_mapel`
+--
+
+INSERT INTO `tb_guru_mapel` (`kode_gmp`, `kode_guru`, `kode_mapel`, `kode_jurusan_mapel`) VALUES
+(19, 'aads123', '37', '3'),
+(20, 's2ish', '51', '1'),
+(21, 'aads123', '72', '4'),
+(22, 's2ish', '27', '3'),
+(23, 'aads123', '26', '3');
 
 -- --------------------------------------------------------
 
@@ -122,6 +134,7 @@ INSERT INTO `tb_kelas` (`kode_kelas`, `kelas`, `jurusan`) VALUES
 ('11ap', '11', '1'),
 ('10pm', '10', '4'),
 ('11pm', '11', '4'),
+('10ak', '10', '2'),
 ('11ak', '11', '2'),
 ('10mm', '10', '3'),
 ('11mm', '11', '3');
@@ -164,6 +177,7 @@ INSERT INTO `tb_mapel` (`kode_mapel`, `nama_mapel`, `kategori_mapel`) VALUES
 (19, 'Praktikum Akuntansi Lembaga atau Instansi Pemerintah', '2'),
 (20, 'Akuntansi Keuangan', '2'),
 (21, 'Komputer Akuntansi', '2'),
+(22, 'Administrasi Pajak', '2'),
 (23, 'Produk Kreatif dan Kewirausahaan', '2'),
 (24, 'Pendidikan Agama Islam dan Budi Pekerti', '3'),
 (25, 'Pendidikan Agama dan Budi Pekerti (Agama Lainnya)', '3'),
@@ -261,30 +275,6 @@ INSERT INTO `tb_sesi` (`id`, `kode_sesi`, `sesi`, `jam_mulai`, `jam_selesai`, `d
 (10, 'sesi8', '8', '13:30:00', '14:15:00', '0 Jam 45 Menit'),
 (11, 'sesi9', '9', '14:15:00', '15:00:00', '0 Jam 45 Menit');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `tb_users`
---
-
-CREATE TABLE `tb_users` (
-  `username` varchar(50) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `password_hash` varchar(255) NOT NULL,
-  `nama_user` varchar(50) NOT NULL,
-  `deskripsi_user` varchar(255) NOT NULL,
-  `foto_user` varchar(255) NOT NULL,
-  `level_user` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tb_users`
---
-
-INSERT INTO `tb_users` (`username`, `password`, `password_hash`, `nama_user`, `deskripsi_user`, `foto_user`, `level_user`) VALUES
-('admin', 'admin123', '0192023a7bbd73250516f069df18b500', 'Admin', 'Saya adalah Administrator', 'admin.jpg', 'administrator'),
-('fauzi.mhabibi', 'admin123', '0192023a7bbd73250516f069df18b500', 'Fauzi Maulana Habibi', 'Saya adalah pembuat Website ini.', 'fauzi.jpg', 'administrator');
-
 --
 -- Indexes for dumped tables
 --
@@ -302,6 +292,12 @@ ALTER TABLE `tb_guru_mapel`
   ADD PRIMARY KEY (`kode_gmp`);
 
 --
+-- Indexes for table `tb_hari`
+--
+ALTER TABLE `tb_hari`
+  ADD PRIMARY KEY (`kode_hari`);
+
+--
 -- Indexes for table `tb_jurusan`
 --
 ALTER TABLE `tb_jurusan`
@@ -314,10 +310,10 @@ ALTER TABLE `tb_mapel`
   ADD PRIMARY KEY (`kode_mapel`);
 
 --
--- Indexes for table `tb_users`
+-- Indexes for table `tb_sesi`
 --
-ALTER TABLE `tb_users`
-  ADD PRIMARY KEY (`username`);
+ALTER TABLE `tb_sesi`
+  ADD PRIMARY KEY (`kode_sesi`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -327,7 +323,7 @@ ALTER TABLE `tb_users`
 -- AUTO_INCREMENT for table `tb_guru_mapel`
 --
 ALTER TABLE `tb_guru_mapel`
-  MODIFY `kode_gmp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `kode_gmp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `tb_jurusan`

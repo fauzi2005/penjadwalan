@@ -1,9 +1,9 @@
 <?php
-session_start();
-
 require "../config/site-name.php";
 require "../config/functions.php";
 require "../config/koneksi.php";
+
+check_login();
 
 $pageName = 'data-guru-add';
 

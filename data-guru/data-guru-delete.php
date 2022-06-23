@@ -1,7 +1,8 @@
 <?php
-session_start();
 require "../config/functions.php";
 require "../config/koneksi.php";
+
+check_login();
 
 $kode_guru = $_POST['kode_guru'];
 

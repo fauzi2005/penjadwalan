@@ -1,9 +1,9 @@
 <?php 
-session_start();
-
 require "../config/site-name.php";
 require "../config/koneksi.php";
 require "../config/functions.php";
+
+check_login();
 
 $isSuccess = FALSE;
 

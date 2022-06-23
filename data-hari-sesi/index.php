@@ -1,8 +1,9 @@
 <?php 
-session_start();
-
 require "../config/koneksi.php";
 require "../config/functions.php";
+require "../config/site-name.php";
+
+check_login();
 
 $isSuccess = FALSE;
 
@@ -27,7 +28,7 @@ $i = 1;
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>SMKN 19 Jakarta | Data Kelas</title>
+	<title>Data Hari Sesi | <?= $siteName ?></title>
 	<link rel="icon" type="image/x-icon" href="../assets/img/tutwurihandayani-logo.png">
 
 	<?php 

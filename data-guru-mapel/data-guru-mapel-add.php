@@ -1,9 +1,9 @@
 <?php
-session_start();
-
 require "../config/site-name.php";
 require "../config/functions.php";
 require "../config/koneksi.php";
+
+check_login();
 
 $pageName = 'data-guru-mapel-add';
 
@@ -91,7 +91,7 @@ if(isset($_POST['submit']))
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Tambah Data Mata Pelajaran Guru | <?= $siteName ?></title>
+	<title>Tambah Data Guru Mata Pelajaran | <?= $siteName ?></title>
 	<link rel="icon" type="image/x-icon" href="<?= BASE_URL ?>assets/img/tutwurihandayani-logo.png">
 
 	<?php 
