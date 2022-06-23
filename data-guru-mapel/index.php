@@ -40,34 +40,9 @@ $i = 1;
 	<title>Data Mata Pelajaran | <?= $siteName ?></title>
 	<link rel="icon" type="image/x-icon" href="../assets/img/tutwurihandayani-logo.png">
 
-	<!-- Google Font: Source Sans Pro -->
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-	<!-- Font Awesome -->
-	<link rel="stylesheet" href="../assets/plugins/fontawesome-free/css/all.min.css">
-	<!-- Ionicons -->
-	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-	<!-- Tempusdominus Bootstrap 4 -->
-	<link rel="stylesheet" href="../assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-	<!-- SweetAlert2 -->
-	<link rel="stylesheet" href="../assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
-	<!-- Toastr -->
-	<link rel="stylesheet" href="../assets/plugins/toastr/toastr.min.css">
-	<!-- iCheck -->
-	<link rel="stylesheet" href="../assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-	<!-- JQVMap -->
-	<link rel="stylesheet" href="../assets/plugins/jqvmap/jqvmap.min.css">
-	<!-- DataTables -->
-	<link rel="stylesheet" href="../assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-	<link rel="stylesheet" href="../assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-	<link rel="stylesheet" href="../assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
-	<!-- SweetAlert2 -->
-	<link rel="stylesheet" href="../assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
-	<!-- Toastr -->
-	<link rel="stylesheet" href="../assets/plugins/toastr/toastr.min.css">
-	<!-- Theme style -->
-	<link rel="stylesheet" href="../assets/css/adminlte.min.css">
-	<!-- overlayScrollbars -->
-	<link rel="stylesheet" href="../assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+	<?php 
+	include "../layouts/head-script.php"
+	?>
 
 	<style>
 		.button-datatables-file {
@@ -186,7 +161,7 @@ $i = 1;
 										</button>
 									</div>
 									<br><br>
-									<table id="example1" class="table table-bordered table-striped">
+									<table id="dataTable" class="table table-bordered table-striped">
 										<thead>
 											<tr>
 												<!-- <th>Kode Mata Pelajaran</th> -->
@@ -199,14 +174,14 @@ $i = 1;
 										<tbody>
 											<?php foreach ($dataGuruMapel as $guruMapel) : ?>
 												<tr>
-													<!-- <td><?= $guruMapel["kode_mapel"]; ?></td> -->
+													<!-- <td><?= $guruMapel["kode_gmp"]; ?></td> -->
 													<td><?= $guruMapel["nama_guru"]; ?></td>
 													<td><?= $guruMapel["nama_mapel"]; ?></td>
 													<td><?= $guruMapel["nama_jurusan"]; ?></td>
 													
 													<td>
-														<a href="<?= BASE_URL . 'data-guru-mapel/data-guru-mapel-edit.php?kode_gmp=' . $guruMapel["kode_gmp"] ?>" title="Edit" class="btn btn-warning">EDIT</a>
-														<a href="<?= BASE_URL . 'data-guru-mapel/data-guru-mapel-delete.php?kode_gmp=' . $guruMapel["kode_gmp"] ?>" title="Delete" class="btn btn-danger" onclick="return confirm('Apakah kamu yakin ingin menghapus data ini?');">DELETE</a>
+														<a href="<?= BASE_URL . 'data-guru-mapel/data-guru-mapel-edit.php?kode_gmp=' . $guruMapel["kode_gmp"] ?>" title="Edit" class="btn btn-warning text-white"><i class="fas fa-edit"></i></a>
+														<a href="javascript:void(0)" class="btn btn-danger" id="data-row" data-id="<?= $guruMapel['kode_gmp'] ?>"  title="Delete"><i class="fas fa-trash"></i></a>
 													</td>
 												</tr>
 											<?php endforeach; ?>
@@ -284,45 +259,16 @@ $i = 1;
 	</div>
 	<!-- /.modal -->
 
-	<!-- jQuery -->
-	<script src="../assets/plugins/jquery/jquery.min.js"></script>
-	<!-- jQuery UI 1.11.4 -->
-	<script src="../assets/plugins/jquery-ui/jquery-ui.min.js"></script>
-	<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-	<script>
-		$.widget.bridge('uibutton', $.ui.button)
-	</script>
-	<!-- Bootstrap 4 -->
-	<script src="../assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<!-- SweetAlert2 -->
-	<script src="../assets/plugins/sweetalert2/sweetalert2.min.js"></script>
-	<!-- Toastr -->
-	<script src="../assets/plugins/toastr/toastr.min.js"></script>
-	<!-- daterangepicker -->
-	<script src="../assets/plugins/moment/moment.min.js"></script>
-	<script src="../assets/plugins/daterangepicker/daterangepicker.js"></script>
-	<!-- overlayScrollbars -->
-	<script src="../assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-	<!-- AdminLTE App -->
-	<script src="../assets/js/adminlte.js"></script>
-	<!-- DataTables  & Plugins -->
-	<script src="../assets/plugins/datatables/jquery.dataTables.min.js"></script>
-	<script src="../assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-	<script src="../assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-	<script src="../assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-	<script src="../assets/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-	<script src="../assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-	<script src="../assets/plugins/jszip/jszip.min.js"></script>
-	<script src="../assets/plugins/pdfmake/pdfmake.min.js"></script>
-	<script src="../assets/plugins/pdfmake/vfs_fonts.js"></script>
-	<script src="../assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-	<script src="../assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
-	<script src="../assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+	<?php 
+	include "../layouts/footer-script.php";
+	?>
+
 	<!-- Page specific script -->
 	<script>
+		// Datatables
 		$(function () {
-			$("#example1").DataTable({
-				"responsive": true,
+			$("#dataTable").DataTable({
+				"responsive": false,
 				"lengthChange": true,
 				"autoWidth": false,
 				// "ordering": true,
@@ -343,18 +289,63 @@ $i = 1;
 				]
 
 				// "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-			}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+			}).buttons().container().appendTo('#dataTable_wrapper .col-md-6:eq(0)');
 		});
-	</script>
-	<!-- SweetAlert2 -->
-	<script src="../assets/plugins/sweetalert2/sweetalert2.min.js"></script>
-	<!-- Toastr -->
-	<script src="../assets/plugins/toastr/toastr.min.js"></script>
-	<!-- Fade Out Element -->
-	<script type="text/javascript">
-		$('#fadeOut').delay(1500).fadeOut(1000).fadeOut("slow");
-	</script>
 
+		// Fun Fade Out
+		$('#fadeOut').delay(1500).fadeOut(1000).fadeOut("slow");
+
+		// Trigger Delete Button
+		$(document).ready(function(){
+			$(document).on('click', '#data-row', function(e){
+				var dataRow = $(this).data('id');
+				SwalDelete(dataRow);
+				e.preventDefault();
+			})
+		})
+
+		// Fun Delete Button
+		function SwalDelete(dataRow){
+			Swal.fire({
+				title: 'Anda Yakin?',
+				text: 'Anda tidak akan dapat memulihkan data ini!',
+				icon: 'warning',
+				showCancelButton: true,
+				cancelButtonColor: '#d33',
+				confirmButtonColor: '#3085d6',
+				confirmButtonText: 'Ya, hapus!',
+				showLoaderOnConfirm: true,
+
+				preConfirm: function(){
+					return new Promise(function(resolve){
+						$.ajax({
+							url: 'data-guru-mapel-delete.php',
+							type: 'POST',
+							data: 'kode_gmp='+dataRow
+						})
+						.done(function(response){
+							Swal.fire({
+								icon: 'success',
+								title: 'Deleted!',
+								text: 'Hapus data berhasil!',
+								confirmButtonColor: '#3085d6'
+							}).then(okay => {
+								if (okay) {
+									window.location.reload();
+								}
+							});
+
+							
+						})
+						.fail(function(){
+							Swal.fire('Oops....', 'Something went wrong with ajax!', 'error');
+						});
+					});
+				},
+				allowOutsideClick: false
+			});
+		}
+	</script>
 
 </body>
 </html>

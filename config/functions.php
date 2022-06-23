@@ -1,7 +1,12 @@
 <?php 
-// session_start();
+session_start();
 define('BASE_URL', 'http://localhost/github-repository/php-project/php-project/');
 
+function check_login(){
+	if(!isset($_SESSION['username'])){
+		header("Location:" . BASE_URL . "login/");
+	}
+}
 
 function get_data_jurusan(){
 	require_once "koneksi.php";

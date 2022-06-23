@@ -68,26 +68,10 @@ if(isset($_POST['submit']))
 	<title>Tambah Data Mata Pelajaran | <?= $siteName ?></title>
 	<link rel="icon" type="image/x-icon" href="<?= BASE_URL ?>assets/img/tutwurihandayani-logo.png">
 
-	<!-- Google Font: Source Sans Pro -->
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-	<!-- Font Awesome -->
-	<link rel="stylesheet" href="<?= BASE_URL ?>assets/plugins/fontawesome-free/css/all.min.css">
-	<!-- Ionicons -->
-	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-	<!-- Tempusdominus Bootstrap 4 -->
-	<link rel="stylesheet" href="<?= BASE_URL ?>assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-	<!-- iCheck -->
-	<link rel="stylesheet" href="<?= BASE_URL ?>assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-	<!-- JQVMap -->
-	<link rel="stylesheet" href="<?= BASE_URL ?>assets/plugins/jqvmap/jqvmap.min.css">
-	<!-- SweetAlert2 -->
-	<link rel="stylesheet" href="<?= BASE_URL ?>assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
-	<!-- Toastr -->
-	<link rel="stylesheet" href="<?= BASE_URL ?>assets/plugins/toastr/toastr.min.css">
-	<!-- Theme style -->
-	<link rel="stylesheet" href="<?= BASE_URL ?>assets/css/adminlte.min.css">
-	<!-- overlayScrollbars -->
-	<link rel="stylesheet" href="<?= BASE_URL ?>assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+	<?php 
+	include "../layouts/head-script.php";
+	?>
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 	<div class="wrapper">
@@ -171,26 +155,9 @@ if(isset($_POST['submit']))
 		</div>
 		<!-- ./wrapper -->
 
-	<!-- jQuery -->
-	<script src="<?= BASE_URL ?>assets/plugins/jquery/jquery.min.js"></script>
-	<!-- jQuery UI 1.11.4 -->
-	<script src="<?= BASE_URL ?>assets/plugins/jquery-ui/jquery-ui.min.js"></script>
-	<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-	<script>
-		$.widget.bridge('uibutton', $.ui.button)
-	</script>
-	<!-- Bootstrap 4 -->
-	<script src="<?= BASE_URL ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<!-- SweetAlert2 -->
-	<script src="<?= BASE_URL ?>assets/plugins/sweetalert2/sweetalert2.min.js"></script>
-	<!-- Toastr -->
-	<script src="<?= BASE_URL ?>assets/plugins/toastr/toastr.min.js"></script>
-	<!-- daterangepicker -->
-	<script src="<?= BASE_URL ?>assets/plugins/moment/moment.min.js"></script>
-	<script src="<?= BASE_URL ?>assets/plugins/daterangepicker/daterangepicker.js"></script>
-	<!-- overlayScrollbars -->
-	<script src="<?= BASE_URL ?>assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-	<!-- AdminLTE App -->
-	<script src="<?= BASE_URL ?>assets/js/adminlte.js"></script>
+	<?php 
+	include "../layouts/footer-script.php";
+	?>
+	
 </body>
 </html>

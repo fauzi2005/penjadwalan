@@ -3,7 +3,7 @@ session_start();
 require "../config/functions.php";
 require "../config/koneksi.php";
 
-$kode_gmp = $_GET['kode_gmp'];
+$kode_gmp = $_POST['kode_gmp'];
 
 $conn = open_connection();
 

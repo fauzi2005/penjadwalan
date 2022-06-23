@@ -3,7 +3,7 @@ session_start();
 require "../config/functions.php";
 require "../config/koneksi.php";
 
-$kode_kelas = $_GET['kode_kelas'];
+$kode_kelas = $_POST['kode_kelas'];
 
 $conn = open_connection();
 

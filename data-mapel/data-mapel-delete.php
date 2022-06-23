@@ -3,7 +3,7 @@ session_start();
 require "../config/functions.php";
 require "../config/koneksi.php";
 
-$kode_mapel = $_GET['kode_mapel'];
+$kode_mapel = $_POST['kode_mapel'];
 
 $conn = open_connection();
 
