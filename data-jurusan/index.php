@@ -1,19 +1,17 @@
 <?php 
-// session_start();
-
-require "../config/site-name.php";
 require "../config/koneksi.php";
 require "../config/functions.php";
+require "../config/site-name.php";
 
 check_login();
 
 $isSuccess = FALSE;
-$pageName = "data-guru";
+$pageName = "data-jurusan";
 
 $conn = open_connection();
 
-$query = ("SELECT * FROM tb_guru");
-$dataGuru = mysqli_query($conn, $query);
+$query = ("SELECT * FROM tb_jurusan");
+$dataJurusan = mysqli_query($conn, $query);
 $i = 1;
 
 ?>
@@ -23,11 +21,11 @@ $i = 1;
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Data Guru | <?= $siteName ?></title>
-	<link rel="icon" type="image/x-icon" href="<?= BASE_URL ?>assets/img/tutwurihandayani-logo.png">
+	<title>Data Jurusan | <?= $siteName ?></title>
+	<link rel="icon" type="image/x-icon" href="../assets/img/tutwurihandayani-logo.png">
 
 	<?php 
-	include "../layouts/head-script.php"
+	include "../layouts/head-script.php";
 	?>
 
 	<style>
@@ -67,13 +65,14 @@ $i = 1;
 			transform: scale(1.2);
 		}
 	</style>
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 	<div class="wrapper">
 
 		<!-- Preloader -->
 		<div class="preloader flex-column justify-content-center align-items-center">
-			<img class="animation__shake" src="<?= BASE_URL ?>assets/img/tutwurihandayani-logo.png" alt="Tutwuri Handayani Logo" height="260" width="260">
+			<img class="animation__shake" src="../assets/img/tutwurihandayani-logo.png" alt="Tutwuri Handayani Logo" height="260" width="260">
 		</div>
 
 
@@ -99,7 +98,7 @@ $i = 1;
 
 						<br>
 						<div class="alert alert-success" id="fadeOut">
-							<div class="text-center" id="testing">
+							<div class="text-center">
 								<b>
 									<?php 
 									echo $_SESSION['sessionAlert'];
@@ -112,12 +111,12 @@ $i = 1;
 					<div class="row mb-2">
 						<div class="col-sm-6">
 							<!-- Judul Pages -->
-							<h1 class="m-0">Data Guru</h1>
+							<h1 class="m-0">Data Jurusan</h1>
 						</div>
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
 								<li class="breadcrumb-item"><a href="#">Home</a></li>
-								<li class="breadcrumb-item active">Data Guru</li>
+								<li class="breadcrumb-item active">Data Jurusan</li>
 							</ol>
 						</div>
 					</div>
@@ -135,42 +134,31 @@ $i = 1;
 						<div class="col-12">
 							<div class="card">
 								<div class="card-header">
-									<h3 class="card-title">List Data Guru</h3>
+									<h3 class="card-title">List Data Jurusan</h3>
 								</div>
 								<!-- /.card-header -->
 								<div class="card-body">
 									<div class="card-title">
-										<a href="data-guru-add.php" title="Data Guru Add" class="btn btn-primary">Tambah Data Guru</a>
+										<a href="data-jurusan-add.php" title="Data Jurusan Add" class="btn btn-primary">Tambah Data Jurusan</a>
+										<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-add">
+											Add Data Jurusan
+										</button> -->
 									</div>
 									<br><br>
-									<table id="dataTable" class="table table-sm table-bordered table-striped">
+									<table id="dataTable" class="table table-bordered table-striped">
 										<thead>
 											<tr>
-												<th>Kode Guru</th>
-												<th>NIP Guru</th>
-												<th>Nama Guru</th>
-												<th>Gelar Guru</th>
-												<th>Jenis Kelamin Guru</th>
-												<th>Alamat Guru</th>
-												<th>No HP Guru</th>
-												<th>E-mail Guru</th>
-												<th width="10%">Action</th>
+												<th>Nama Jurusan</th>
+												<th>Action</th>
 											</tr>
 										</thead>
-										<tbody id="ahai">
-											<?php foreach ($dataGuru as $guru) : ?>
+										<tbody>
+											<?php foreach ($dataJurusan as $jurusan) : ?>
 												<tr>
-													<td><?= $guru["kode_guru"]; ?></td>
-													<td><?= $guru["nip_guru"]; ?></td>
-													<td><?= $guru["nama_guru"]; ?></td>
-													<td><?= $guru["gelar_guru"]; ?></td>
-													<td><?= $guru["gender_guru"]; ?></td>
-													<td><?= $guru["alamat_guru"]; ?></td>
-													<td><?= $guru["no_hp_guru"]; ?></td>
-													<td><?= $guru["email_guru"]; ?></td>
-													<td class="text-center">
-														<a href="<?= BASE_URL . 'data-guru/data-guru-edit.php?kode_guru=' . $guru["kode_guru"] ?>" title="Edit" class="btn btn-warning text-white"><i class="fas fa-edit"></i></a>
-														<a href="javascript:void(0)" class="btn btn-danger" id="data-row" data-id="<?= $guru['kode_guru'] ?>" title="Delete"><i class="fas fa-trash"></i></a>
+													<td><?= $jurusan["nama_jurusan"]; ?></td>
+													<td>
+														<a href="<?= BASE_URL . 'data-jurusan/data-jurusan-edit.php?kode_jurusan=' . $jurusan["kode_jurusan"] ?>" title="Edit" class="btn btn-warning text-white"><i class="fas fa-edit"></i></a>
+														<a href="javascript:void(0)" class="btn btn-danger" id="data-row" data-id="<?= $jurusan['kode_jurusan'] ?>" title="Delete"><i class="fas fa-trash"></i></a>
 													</td>
 												</tr>
 
@@ -259,9 +247,9 @@ $i = 1;
 				preConfirm: function(){
 					return new Promise(function(resolve){
 						$.ajax({
-							url: 'data-guru-delete.php',
+							url: 'data-jurusan-delete.php',
 							type: 'POST',
-							data: 'kode_guru='+dataRow
+							data: 'kode_jurusan='+dataRow
 						})
 						.done(function(response){
 							Swal.fire({

@@ -8,7 +8,7 @@
 	<?php endif ?>
 	<div class="card-body">
 		<div class="form-group row">
-			<label for="inputKodeKelas" class="col-sm-2 col-form-label">Kelas</label>
+			<label for="inputKodeKelas" class="col-sm-2 col-form-label">Kode Kelas</label>
 			<div class="col-sm-10">
 				<?php 
 				if ($readonly == "found") {
@@ -24,7 +24,7 @@
 		<div class="form-group row">
 			<label for="inputKelas" class="col-sm-2 col-form-label">Kelas</label>
 			<div class="col-sm-10">
-				<input type="number" class="form-control" id="inputKelas" name="kelas" placeholder="Kelas" value="<?= $kelas ?>">
+				<input type="text" class="form-control" id="inputKelas" name="kelas" placeholder="Kelas" value="<?= $kelas ?>">
 			</div>
 		</div>
 		<div class="form-group row">

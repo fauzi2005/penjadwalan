@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 24, 2022 at 11:18 AM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 8.0.3
+-- Generation Time: Jun 23, 2022 at 07:13 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,7 +33,7 @@ CREATE TABLE `tb_guru` (
   `nama_guru` varchar(50) NOT NULL,
   `gelar_guru` varchar(20) NOT NULL,
   `gender_guru` varchar(20) NOT NULL,
-  `alamat_guru` varchar(255) NOT NULL,
+  `alamat_guru` varchar(50) NOT NULL,
   `no_hp_guru` varchar(15) NOT NULL,
   `email_guru` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -43,7 +43,7 @@ CREATE TABLE `tb_guru` (
 --
 
 INSERT INTO `tb_guru` (`kode_guru`, `nip_guru`, `nama_guru`, `gelar_guru`, `gender_guru`, `alamat_guru`, `no_hp_guru`, `email_guru`) VALUES
-('s2ish', '3175072005980007', 'Fauzi Maulana Habibi', 'S.Kom', 'Laki-laki', 'Kp. Pertanian Utara No.10A RT008 RW01, Kel. Klender', '085776509645', 'fauzimaulanahabibi@gmail.com');
+('s2ish', '123112312', 'Fauzi Maulana Habibi', 'S.Kom', 'Perempuan', 'Kp. Pertanian Utara No.10A RT008 RW01, Kel. Klende', '085776509645', '1212@sdasd.asa');
 
 -- --------------------------------------------------------
 
@@ -57,14 +57,6 @@ CREATE TABLE `tb_guru_mapel` (
   `kode_mapel` varchar(100) NOT NULL,
   `kode_jurusan_mapel` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tb_guru_mapel`
---
-
-INSERT INTO `tb_guru_mapel` (`kode_gmp`, `kode_guru`, `kode_mapel`, `kode_jurusan_mapel`) VALUES
-(4, 's2ish', '56', '1'),
-(5, 's2ish', '87', '5');
 
 -- --------------------------------------------------------
 
@@ -107,8 +99,7 @@ INSERT INTO `tb_jurusan` (`kode_jurusan`, `nama_jurusan`) VALUES
 (1, 'Administrasi Perkantoran'),
 (2, 'Akuntansi'),
 (3, 'Multimedia'),
-(4, 'Pemasaran'),
-(5, 'Sistem Informasi');
+(4, 'Pemasaran');
 
 -- --------------------------------------------------------
 
@@ -133,8 +124,7 @@ INSERT INTO `tb_kelas` (`kode_kelas`, `kelas`, `jurusan`) VALUES
 ('11pm', '11', '4'),
 ('11ak', '11', '2'),
 ('10mm', '10', '3'),
-('11mm', '11', '3'),
-('s6i', 'S6I', '5');
+('11mm', '11', '3');
 
 -- --------------------------------------------------------
 
@@ -237,8 +227,7 @@ INSERT INTO `tb_mapel` (`kode_mapel`, `nama_mapel`, `kategori_mapel`) VALUES
 (83, 'Bisnis Online', '4'),
 (84, 'Pengelolaan Bisnis Ritel', '4'),
 (85, 'Administrasi Transaksi', '4'),
-(86, 'Produk Kreatif dan Kewirausahaan', '4'),
-(87, 'Pemrograman Web Lanjut', '5');
+(86, 'Produk Kreatif dan Kewirausahaan', '4');
 
 -- --------------------------------------------------------
 
@@ -338,19 +327,19 @@ ALTER TABLE `tb_users`
 -- AUTO_INCREMENT for table `tb_guru_mapel`
 --
 ALTER TABLE `tb_guru_mapel`
-  MODIFY `kode_gmp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `kode_gmp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tb_jurusan`
 --
 ALTER TABLE `tb_jurusan`
-  MODIFY `kode_jurusan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `kode_jurusan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tb_mapel`
 --
 ALTER TABLE `tb_mapel`
-  MODIFY `kode_mapel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `kode_mapel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

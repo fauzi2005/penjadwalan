@@ -56,7 +56,9 @@ if(isset($_POST['username']) && isset($_POST['password'])){
     <!-- /.login-logo -->
     <div class="card card-outline card-primary">
       <div class="card-header text-center">
-        <a href="../assets/index2.html" class="h1"><b>Admin</b>LTE</a>
+        <a href="<?= BASE_URL ?>" title="<?= $siteName ?>" class="logo logo-large">
+          <img class="img-fluid" src="<?= BASE_URL . 'assets/img/smkn19jkt.png' ?>" alt="">
+        </a>
       </div>
       <div class="card-body">
         <p class="login-box-msg">Log In !</p>

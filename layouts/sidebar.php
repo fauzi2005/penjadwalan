@@ -10,7 +10,7 @@
 		<!-- Sidebar user panel (optional) -->
 		<div class="user-panel mt-3 pb-3 mb-3 d-flex">
 			<div class="image">
-				<img src="<?= BASE_URL . 'assets/upload/foto-user/' . $_SESSION['foto_user'] ?>" class="img-circle elevation-2" alt="User Image">
+				<img src="<?= BASE_URL . 'assets/uploads/foto-user/' . $_SESSION['foto_user'] ?>" class="img-circle elevation-2" alt="User Image">
 			</div>
 			<div class="info">
 				<a href="#" class="d-block"><?= $_SESSION['nama_user'] ?></a>
@@ -40,7 +40,8 @@
 				if ($pageName == "data-kelas-add" || $pageName == "data-kelas-edit" || $pageName == "data-kelas" ||
 					$pageName == "data-guru-add" || $pageName == "data-guru-edit" || $pageName == "data-guru" ||
 					$pageName == "data-mapel-add" || $pageName == "data-mapel-edit" || $pageName == "data-mapel" ||
-					$pageName == "data-hari-sesi-add" || $pageName == "data-hari-sesi-edit" || $pageName == "data-hari-sesi") {
+					$pageName == "data-hari-sesi-add" || $pageName == "data-hari-sesi-edit" || $pageName == "data-hari-sesi" ||
+					$pageName == "data-jurusan-add" || $pageName == "data-jurusan-edit" || $pageName == "data-jurusan") {
 					$menuOpen = "menu-open";
 					$headMenuActive = "active";
 				}
@@ -51,6 +52,18 @@
 						<p>Data Master<i class="fas fa-angle-left right"></i></p>
 					</a>
 					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<?php
+							$subMenuActive = "";
+							if ($pageName == "data-jurusan-add" || $pageName == "data-jurusan-edit" || $pageName == "data-jurusan") {
+								$subMenuActive = "active";
+							}
+							?>
+							<a href="<?= BASE_URL . 'data-jurusan/' ?>" class="nav-link <?= $subMenuActive ?>">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Data Jurusan</p>
+							</a>
+						</li>
 						<li class="nav-item">
 							<?php
 							$subMenuActive = "";
