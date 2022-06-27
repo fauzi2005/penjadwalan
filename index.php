@@ -1,11 +1,8 @@
 <?php
-// http_response_code(404);
-// include('theme/pages/examples/404.html'); // provide your own HTML for the error page
-// die();
-
-$pageName = "dashboard";
 require "config/functions.php";
 require "config/site-name.php";
+
+$pageName = "dashboard";
 
 check_login();
 

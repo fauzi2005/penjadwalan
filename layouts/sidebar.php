@@ -118,7 +118,8 @@
 				<?php
 				$menuOpen = "";
 				$headMenuActive = "";
-				if ($pageName == "data-guru-mapel-add" || $pageName == "data-guru-mapel-edit" || $pageName == "data-guru-mapel") {
+				if ($pageName == "data-guru-mapel-add" || $pageName == "data-guru-mapel-edit" || $pageName == "data-guru-mapel" ||
+					$pageName == "data-penjadwalan-add" || $pageName == "data-penjadwalan-edit" || $pageName == "data-penjadwalan") {
 					$menuOpen = "menu-open";
 					$headMenuActive = "active";
 				}
@@ -142,7 +143,13 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="#" class="nav-link">
+							<?php
+							$subMenuActive = "";
+							if ($pageName == "data-penjadwalan-add" || $pageName == "data-penjadwalan-edit" || $pageName == "data-penjadwalan") {
+								$subMenuActive = "active";
+							}
+							?>
+							<a href="<?= BASE_URL . 'data-penjadwalan/' ?>" class="nav-link <?= $subMenuActive ?>">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Data Penjadwalan</p>
 							</a>
