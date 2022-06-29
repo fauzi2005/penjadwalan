@@ -150,14 +150,14 @@ $i = 1;
 						<div class="col-12">
 							<div class="card">
 								<div class="card-header">
-									<h3 class="card-title">List Data Mata Pelajaran</h3>
+									<h3 class="card-title">List Data Penjadwalan</h3>
 								</div>
 								<!-- /.card-header -->
 								<div class="card-body">
 									<div class="card-title">
 										<!-- <a href="data-guru-mapel-add.php" title="Data Mata Pelajaran Add" class="btn btn-primary">Tambah Data Mata Pelajaran</a> -->
 										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
-											Tambah Data Mata Pelajaran
+											Buat Penjadwalan
 										</button>
 									</div>
 									<br><br>
@@ -213,24 +213,24 @@ $i = 1;
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title">Pilih Jurusan Mata Pelajaran Guru</h4>
+					<h4 class="modal-title">Pilih Hari Yang Ingin Dijadwalkan</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
-					<p>Note :<br><i class="text-danger">*Pilih jurusan yang ingin ditambahkan ke dalam mata pelajaran guru.</i></p>
+					<p>Note :<br><i class="text-danger">*Pilih hari yang ingin dijadikan parameter untuk pembuatan Penjadwalan.</i></p>
 					<!-- form start -->
-					<form class="form-horizontal" method="GET" action="<?= BASE_URL . 'data-guru-mapel/data-guru-mapel-add.php'?>">
+					<form class="form-horizontal" method="GET" action="<?= BASE_URL . 'data-penjadwalan/data-penjadwalan-add.php'?>">
 						<div class="form-group row">
-							<label for="inputKategoriJurusanMapel" class="col-sm-4 col-form-label">Kategori Mata Pelajaran</label>
+							<label for="inputKategoriJurusanMapel" class="col-sm-4 col-form-label">Hari</label>
 							<div class="col-sm-8">
-								<select class="form-control" name="kategori_jurusan_mapel" required>
-									<option value="">-- Pilih Kategori Mata Pelajaran --</option>
+								<select class="form-control" name="kode_hari" required>
+									<option value="">-- Pilih Hari Penjadwalan 	 --</option>
 									<?php
-									$list_jurusan = get_data_jurusan();
-									if (count($list_jurusan) > 0) {
-										foreach ($list_jurusan as $kode => $nama) {
+									$list_hari = get_data_hari();
+									if (count($list_hari) > 0) {
+										foreach ($list_hari as $kode => $nama) {
 											$terpilih = '';
 											// if ($kategori_mapel == $kode) {
 											// 	$terpilih = " selected";

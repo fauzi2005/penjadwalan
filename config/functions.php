@@ -36,4 +36,19 @@ function get_data_guru(){
 	return $listGuru;
 }
 
+function get_data_hari(){
+	require_once "koneksi.php";
+	$conn = open_connection();
+
+	$queryHari = "SELECT kode_hari, nama_hari FROM tb_hari";
+	$hasilHari = mysqli_query($conn, $queryHari);
+
+	$listHari = array();
+	while($rowHari = mysqli_fetch_assoc($hasilHari)){
+		$listHari[ $rowHari['kode_hari'] ] = $rowHari['nama_hari'];
+	}
+	return $listHari;
+}
+
 ?>
+

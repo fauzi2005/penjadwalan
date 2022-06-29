@@ -2,6 +2,9 @@
 require "../config/functions.php";
 require "../config/site-name.php";
 
+$isFalse = FALSE;
+$message = '';
+
 if(isset($_SESSION['username'])){
   $url = BASE_URL;
   header("Location: $url");
@@ -9,16 +12,16 @@ if(isset($_SESSION['username'])){
 
 if(isset($_POST['username']) && isset($_POST['password'])){
   require "../config/koneksi.php";
-      //Buka koneksi
+  //Buka koneksi
   $conn = open_connection();
 
-      //membuat query mySQL
+  //membuat query mySQL
   $query = "SELECT * FROM tb_users WHERE username = '$_POST[username]' AND password_hash = MD5('$_POST[password]') ";
 
-      //Eksekusi Query
+  //Eksekusi Query
   $hasil = mysqli_query($conn, $query);
 
-      //Baca hasil, kalau berhasil kita pindah halaman, jika gagal muncul pesan
+  //Baca hasil, kalau berhasil kita pindah halaman, jika gagal muncul pesan
   if($isi = mysqli_fetch_assoc($hasil)){
     $_SESSION['username'] = $isi['username'];
     $_SESSION['nama_user'] = $isi['nama_user'];
@@ -28,7 +31,8 @@ if(isset($_POST['username']) && isset($_POST['password'])){
     $url = BASE_URL;
     header("Location: $url");
   } else {
-    echo '<div class="alert alert-danger" role="alert">username dan password salah</div> ';
+    $isFalse = TRUE;
+    $message = "username dan password salah";
   }
 } 
 
@@ -53,6 +57,11 @@ if(isset($_POST['username']) && isset($_POST['password'])){
 </head>
 <body class="hold-transition login-page">
   <div class="login-box">
+    <?php if ($isFalse): ?>
+      <div class="alert alert-danger" id="fadeOut">
+        <?= $message ?>
+      </div>
+    <?php endif ?>
     <!-- /.login-logo -->
     <div class="card card-outline card-primary">
       <div class="card-header text-center">
@@ -62,7 +71,6 @@ if(isset($_POST['username']) && isset($_POST['password'])){
       </div>
       <div class="card-body">
         <p class="login-box-msg">Log In !</p>
-
         <form method="POST">
           <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Username" name="username">
@@ -126,5 +134,10 @@ if(isset($_POST['username']) && isset($_POST['password'])){
 <script src="../assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../assets/js/adminlte.min.js"></script>
+
+<script>
+  // Fun Fade Out
+  $('#fadeOut').delay(1500).fadeOut(1000).fadeOut("slow");
+</script>
 </body>
 </html>

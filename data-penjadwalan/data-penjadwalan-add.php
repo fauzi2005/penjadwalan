@@ -10,36 +10,69 @@ $pageName = 'data-penjadwalan-add';
 $readonly = "";
 
 if (isset($_GET['next'])) {
-	$kategori_jurusan_mapel = $_GET['kategori_jurusan_mapel'];
-
 	$conn = open_connection();
 
-	$query = "SELECT tb_mapel.kode_mapel, tb_mapel.nama_mapel, tb_jurusan.nama_jurusan FROM tb_mapel INNER JOIN tb_jurusan ON tb_mapel.kategori_mapel = tb_jurusan.kode_jurusan WHERE tb_mapel.kategori_mapel = '$kategori_jurusan_mapel' ORDER BY tb_mapel.nama_mapel ASC";
-	$resultJurusanMapel = mysqli_query($conn, $query);
-}
+	$kode_hari = $_GET['kode_hari'];
 
-// // $list_jurusan 	= get_data_jurusan();
-$list_guru = get_data_guru();
+	$queryKelas = "SELECT tb_kelas.kode_kelas, tb_kelas.kelas, tb_jurusan.nama_jurusan FROM tb_kelas
+	INNER JOIN tb_jurusan
+	ON tb_kelas.jurusan = tb_jurusan.kode_jurusan";
+	$resultKelas = mysqli_query($conn, $queryKelas);
 
-$kode_gmp 		= $_POST['kode_gmp'] ?? '';
-$kode_guru 		= $_POST['kode_guru'] ?? '';
-$kode_mapel 	= $_POST['kode_mapel'] ?? '';
-// $kode_jurusan_mapel = 2;
-if ($kode_mapel > 0 ) {
-	$conn = open_connection();
-	$queryKodeJM = "SELECT * FROM tb_mapel";
-	$resultKodeJM = mysqli_query($conn, $queryKodeJM);
+	$queryHari = "SELECT * FROM tb_hari WHERE kode_hari = '$kode_hari'";
+	$resultHari = mysqli_query($conn, $queryHari);
 
-	while($kode_jur_mapel = mysqli_fetch_assoc($resultKodeJM)) {
-		$kode_mapel_two = $kode_jur_mapel["kode_mapel"];
-		$kode_jurusan = $kode_jur_mapel["kategori_mapel"];
+	while($list_tb_hari = mysqli_fetch_assoc($resultHari)) {
+		$kode_tb_hari = $list_tb_hari["kode_hari"];
+		$nama_tb_hari = $list_tb_hari["nama_hari"];
 
-		if ($kode_mapel == $kode_mapel_two) {
-			$kode_jurusan_mapel = $kode_jurusan;
+		if ($kode_hari == $kode_tb_hari) {
+			$nama_hari = $nama_tb_hari;
 		}
 	}
-	
+
+	$query = "SELECT tb_guru_mapel.kode_gmp, tb_guru.nama_guru, tb_mapel.nama_mapel, tb_jurusan.nama_jurusan FROM tb_guru_mapel
+	INNER JOIN tb_guru
+	ON tb_guru_mapel.kode_guru = tb_guru.kode_guru
+	INNER JOIN tb_mapel
+	ON tb_guru_mapel.kode_mapel = tb_mapel.kode_mapel
+	INNER JOIN tb_jurusan
+	ON tb_guru_mapel.kode_jurusan_mapel = tb_jurusan.kode_jurusan";
+
+	$resultGuruMapel = mysqli_query($conn, $query);
+
+	$querySesi = "SELECT * FROM tb_sesi ORDER BY id ASC";
+	$resultSesi = mysqli_query($conn, $querySesi);
 }
+
+// // // $list_jurusan 	= get_data_jurusan();
+// $list_guru = get_data_guru();
+
+// $kode_gmp 		= $_POST['kode_gmp'] ?? '';
+// $kode_guru 		= $_POST['kode_guru'] ?? '';
+// $kode_mapel 	= $_POST['kode_mapel'] ?? '';
+// // $kode_jurusan_mapel = 2;
+// if ($kode_mapel > 0 ) {
+// 	$conn = open_connection();
+// 	$queryKodeJM = "SELECT * FROM tb_mapel";
+// 	$resultKodeJM = mysqli_query($conn, $queryKodeJM);
+
+// 	$queryKelas = "SELECT * FROM tb_kelas";
+// 	$resultKelas = mysqli_query($conn, $queryKelas);
+
+
+// 	while($kode_jur_mapel = mysqli_fetch_assoc($resultKodeJM)) {
+// 		$kode_mapel_two = $kode_jur_mapel["kode_mapel"];
+// 		$kode_jurusan = $kode_jur_mapel["kategori_mapel"];
+
+// 		if ($kode_mapel == $kode_mapel_two) {
+// 			$kode_jurusan_mapel = $kode_jurusan;
+// 		}
+// 	}
+
+// }
+
+
 
 $isError = FALSE;
 $error = '';
@@ -47,39 +80,57 @@ $error = '';
 // // Jika data disubmit, maka lakukan validasi dan simpan data
 if(isset($_POST['submit']))
 {
+	$kelas = $_POST['kelas'];
+	$gmp = $_POST['gmp'];
+	$kode_sesi = $_POST['kode_sesi'];
+
+	$jumlahInput = count($kode_sesi);
+
+	for ($i=0; $i < $jumlahInput; $i++) {
+
+		if ($kelas[$i] > 0 && $gmp[$i] > 0) {
+			$query = "INSERT INTO 
+			tb_jadwal (kode_hari, kelas, kode_gmp, kode_sesi, id)
+			VALUES ('$kode_hari', '$kelas[$i]', '$gmp[$i]', '$kode_sesi[$i]', '')";
+
+			$hasil = mysqli_query($conn, $query);
+		}
+
+
+	}
 	// if ($kode_mapel == '') {
 	// 	$isError = TRUE;
 	// 	$error .= '<div>Kode Mata Pelajaran Harap Diisi !!</div>';
 	// }
-	if ($kode_guru == '') {
-		$isError = TRUE;
-		$error .= '<div>Nama Guru Harap Diisi !!</div>';
-	}
-	if ($kode_mapel == '') {
-		$isError = TRUE;
-		$error .= '<div>Mata Pelajaran Harap Diisi !!</div>';
-	}
+	// if ($kode_guru == '') {
+	// 	$isError = TRUE;
+	// 	$error .= '<div>Nama Guru Harap Diisi !!</div>';
+	// }
+	// if ($kode_mapel == '') {
+	// 	$isError = TRUE;
+	// 	$error .= '<div>Mata Pelajaran Harap Diisi !!</div>';
+	// }
 
-	// Jika tidak ada salah input, maka simpan data ke dalam database
-	if (!$isError) {
-		// $conn = open_connection();
-		$query = "INSERT INTO 
-		tb_guru_mapel (kode_gmp, kode_guru, kode_mapel, kode_jurusan_mapel)
-		VALUES ('$kode_gmp', '$kode_guru', '$kode_mapel', '$kode_jurusan_mapel')";
+	// // Jika tidak ada salah input, maka simpan data ke dalam database
+	// if (!$isError) {
+	// 	// $conn = open_connection();
+	// 	$query = "INSERT INTO 
+	// 	tb_guru_mapel (kode_gmp, kode_guru, kode_mapel, kode_jurusan_mapel)
+	// 	VALUES ('$kode_gmp', '$kode_guru', '$kode_mapel', '$kode_jurusan_mapel')";
 
-		$hasil = mysqli_query($conn, $query);
+	// 	$hasil = mysqli_query($conn, $query);
 
-		if ($hasil)
-		{
-			$url = BASE_URL . 'data-guru-mapel/';
-			$_SESSION['sessionAlert'] = "Data berhasil ditambah !!";
-			header("Location: $url");
-		} else
-		{
-			$isError = TRUE;
-			$error = "gagal menyimpan ke database : " . mysqli_error($conn);
-		}
-	}
+	// 	if ($hasil)
+	// 	{
+	// 		$url = BASE_URL . 'data-guru-mapel/';
+	// 		$_SESSION['sessionAlert'] = "Data berhasil ditambah !!";
+	// 		header("Location: $url");
+	// 	} else
+	// 	{
+	// 		$isError = TRUE;
+	// 		$error = "gagal menyimpan ke database : " . mysqli_error($conn);
+	// 	}
+	// }
 }
 
 
@@ -97,6 +148,20 @@ if(isset($_POST['submit']))
 	<?php 
 	include "../layouts/head-script.php"
 	?>
+	<!-- Select2 -->
+	<link rel="stylesheet" href="<?= BASE_URL ?>assets/plugins/select2/css/select2.min.css">
+	<link rel="stylesheet" href="<?= BASE_URL ?>assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+
+	<style type="text/css" media="screen">
+		.hr-divider {
+			border: none;
+			border-top: 1px dotted #000;
+			color: #fff;
+			background-color: #fff;
+			height: 1px;
+			width: 100%;
+		}
+	</style>
 	
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -158,7 +223,7 @@ if(isset($_POST['submit']))
 									</div>
 									<!-- /.card-header -->
 									<?php
-									include "form-data-guru-mapel.php";
+									include "form-data-penjadwalan.php";
 									?>
 								</div>
 								<!-- /.card -->
@@ -183,5 +248,20 @@ if(isset($_POST['submit']))
 		<?php 
 		include "../layouts/footer-script.php";
 		?>
-	</body>
-	</html>
+
+		<!-- Select2 -->
+		<script src="<?= BASE_URL ?>assets/plugins/select2/js/select2.full.min.js"></script>
+
+		<script>
+			$(function () {
+    		//Initialize Select2 Elements
+    		$('.select2').select2()
+
+    		//Initialize Select2 Elements
+    		$('.select2bs4').select2({
+    			theme: 'bootstrap4'
+    		})
+    	})
+    </script>
+</body>
+</html>
