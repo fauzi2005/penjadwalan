@@ -4,16 +4,16 @@ require "../config/koneksi.php";
 
 check_login();
 
-$kode_gmp = $_POST['kode_gmp'];
+$kode_jadwal = $_POST['kode_jadwal'];
 
 $conn = open_connection();
 
-$query = "DELETE FROM tb_guru_mapel WHERE kode_gmp = '$kode_gmp'";
+$query = "DELETE FROM tb_jadwal WHERE kode_jadwal = '$kode_jadwal'";
 
 $result = mysqli_query($conn, $query);
 
 if ($result) {
-	$url = BASE_URL . 'data-guru-mapel/';
+	$url = BASE_URL . 'data-penjadwalan/';
 	$_SESSION['sessionAlert'] = "Data berhasil dihapus !!";
 	header("Location: $url");
 } else {

@@ -9,11 +9,11 @@ $pageName = "data-penjadwalan-edit";
 
 $readonly = "found";
 
-$param_kode_gmp = $_GET['kode_gmp'];
+$param_kode_jadwal = $_GET['kode_jadwal'];
 
 $conn = open_connection();
 
-$query = "SELECT * FROM tb_guru_mapel WHERE kode_gmp = '$param_kode_gmp'";
+$query = "SELECT * FROM tb_guru_mapel WHERE kode_jadwal = '$param_kode_jadwal'";
 $result = mysqli_query($conn, $query);
 
 $old_data = array();
@@ -28,7 +28,7 @@ if ($data_found) {
 	// $list_jurusan = get_data_jurusan();
 	$list_guru = get_data_guru();
 
-	$kode_gmp 					= $_POST['kode_gmp'] ?? $old_data['kode_gmp'];
+	$kode_jadwal 				= $_POST['kode_jadwal'] ?? $old_data['kode_jadwal'];
 	$kode_guru 					= $_POST['kode_guru'] ?? $old_data['kode_guru'];
 	$kode_mapel 				= $_POST['kode_mapel'] ?? $old_data['kode_mapel'];
 	$kategori_jurusan_mapel 	= $_POST['kode_jurusan_mapel'] ?? $old_data['kode_jurusan_mapel'];
@@ -45,7 +45,7 @@ if ($data_found) {
 // Jika data disubmit, maka lakukan validasi dan simpan data
 if($data_found && isset($_POST['submit']))
 {
-	if ($kode_gmp == '') {
+	if ($kode_jadwal == '') {
 		$isError = TRUE;
 		$error .= '<div>Kode Guru Mata Pelajaran Harap Diisi !!</div>';
 	}
@@ -64,7 +64,7 @@ if($data_found && isset($_POST['submit']))
 		$query = "UPDATE tb_guru_mapel SET 
 		kode_guru = '$kode_guru', kode_mapel = '$kode_mapel', kode_jurusan_mapel = '$kategori_jurusan_mapel'
 		WHERE 
-		kode_gmp = '$old_data[kode_gmp]'";
+		kode_jadwal = '$old_data[kode_jadwal]'";
 
 		$hasil = mysqli_query($conn, $query);
 

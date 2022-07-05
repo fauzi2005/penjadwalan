@@ -18,6 +18,12 @@
 			<tbody>
 
 				<?php foreach ($resultSesi as $sesi): ?>
+					<?php 
+					if ($sesi['sesi'] == "Istirahat") {
+						$sesi['id'] = "Istirahat";
+					}
+
+					 ?>
 					<tr>
 						<td class="align-middle text-center">
 							<?= $nama_hari ?>
@@ -28,7 +34,7 @@
 								<option value="">-- Silahkan Pilih Kelas --</option>
 
 								<?php foreach ($resultKelas as $kelas): ?>
-									<option value="<?= $kelas['kode_kelas'] ?>"><?= $kelas['nama_jurusan'] . " - " . $kelas['kelas'] ?></option>							
+									<option value="<?= $kelas['kode_kelas'] ?>"><?= $kelas['nama_jurusan'] . " - " . $kelas['kelas'] ?></option>		
 								<?php endforeach ?>
 							</select>
 						</td>
@@ -36,9 +42,10 @@
 						<td>
 							<select class="form-control select2bs4" style="width: 100%;" name="gmp[]">
 								<option value="">-- Silahkan Pilih Guru dan Mata Pelajaran --</option>
+								<option value="Istirahat">Istirahat</option>
 
 								<?php foreach ($resultGuruMapel as $guruMapel): ?>
-									<option value="<?= $guruMapel['kode_gmp'] ?>"><?= "[Jurusan <br>" . $guruMapel['nama_jurusan'] . "] - [Mapel" . $guruMapel['nama_mapel'] . " - " . $guruMapel['nama_guru']?></option>							
+									<option value="<?= $guruMapel['kode_gmp'] ?>"><?= "[Jurusan <br>" . $guruMapel['nama_jurusan'] . "] - [Mapel " . $guruMapel['nama_mapel'] . "] - [Guru " . $guruMapel['nama_guru'] . "]" ?></option>							
 								<?php endforeach ?>
 							</select>
 						</td>
@@ -62,7 +69,7 @@
 		</table>
 		<div class="text-center card-footer">
 			<button type="submit" class="btn btn-info" name="submit">Submit</button>
-			<button type="reset" class="btn btn-default">Reset <?= $jumlahInput ?></button>
+			<button type="reset" class="btn btn-default">Reset</button>
 		</div>
 	</form>
 </div>

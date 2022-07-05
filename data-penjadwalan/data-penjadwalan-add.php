@@ -45,41 +45,13 @@ if (isset($_GET['next'])) {
 	$resultSesi = mysqli_query($conn, $querySesi);
 }
 
-// // // $list_jurusan 	= get_data_jurusan();
-// $list_guru = get_data_guru();
-
-// $kode_gmp 		= $_POST['kode_gmp'] ?? '';
-// $kode_guru 		= $_POST['kode_guru'] ?? '';
-// $kode_mapel 	= $_POST['kode_mapel'] ?? '';
-// // $kode_jurusan_mapel = 2;
-// if ($kode_mapel > 0 ) {
-// 	$conn = open_connection();
-// 	$queryKodeJM = "SELECT * FROM tb_mapel";
-// 	$resultKodeJM = mysqli_query($conn, $queryKodeJM);
-
-// 	$queryKelas = "SELECT * FROM tb_kelas";
-// 	$resultKelas = mysqli_query($conn, $queryKelas);
-
-
-// 	while($kode_jur_mapel = mysqli_fetch_assoc($resultKodeJM)) {
-// 		$kode_mapel_two = $kode_jur_mapel["kode_mapel"];
-// 		$kode_jurusan = $kode_jur_mapel["kategori_mapel"];
-
-// 		if ($kode_mapel == $kode_mapel_two) {
-// 			$kode_jurusan_mapel = $kode_jurusan;
-// 		}
-// 	}
-
-// }
-
-
 
 $isError = FALSE;
 $error = '';
 
 // // Jika data disubmit, maka lakukan validasi dan simpan data
-if(isset($_POST['submit']))
-{
+if(isset($_POST['submit'])) {
+	
 	$kelas = $_POST['kelas'];
 	$gmp = $_POST['gmp'];
 	$kode_sesi = $_POST['kode_sesi'];
@@ -90,47 +62,25 @@ if(isset($_POST['submit']))
 
 		if ($kelas[$i] > 0 && $gmp[$i] > 0) {
 			$query = "INSERT INTO 
-			tb_jadwal (kode_hari, kelas, kode_gmp, kode_sesi, id)
-			VALUES ('$kode_hari', '$kelas[$i]', '$gmp[$i]', '$kode_sesi[$i]', '')";
+			tb_jadwal (kode_jadwal, kode_hari, kelas, kode_gmp, kode_sesi)
+			VALUES ('', '$kode_hari', '$kelas[$i]', '$gmp[$i]', '$kode_sesi[$i]')";
 
 			$hasil = mysqli_query($conn, $query);
 		}
 
-
 	}
-	// if ($kode_mapel == '') {
-	// 	$isError = TRUE;
-	// 	$error .= '<div>Kode Mata Pelajaran Harap Diisi !!</div>';
-	// }
-	// if ($kode_guru == '') {
-	// 	$isError = TRUE;
-	// 	$error .= '<div>Nama Guru Harap Diisi !!</div>';
-	// }
-	// if ($kode_mapel == '') {
-	// 	$isError = TRUE;
-	// 	$error .= '<div>Mata Pelajaran Harap Diisi !!</div>';
-	// }
 
-	// // Jika tidak ada salah input, maka simpan data ke dalam database
-	// if (!$isError) {
-	// 	// $conn = open_connection();
-	// 	$query = "INSERT INTO 
-	// 	tb_guru_mapel (kode_gmp, kode_guru, kode_mapel, kode_jurusan_mapel)
-	// 	VALUES ('$kode_gmp', '$kode_guru', '$kode_mapel', '$kode_jurusan_mapel')";
+	if ($hasil > 0) {
+		$url = BASE_URL . 'data-guru-mapel/';
+		$_SESSION['sessionAlert'] = "Data berhasil ditambah !!";
+		header("Location: $url");
+	} else {
+		$isError = TRUE;
+		$error = "gagal menyimpan ke database : " . mysqli_error($conn);
+	}
+		# code...
+}
 
-	// 	$hasil = mysqli_query($conn, $query);
-
-	// 	if ($hasil)
-	// 	{
-	// 		$url = BASE_URL . 'data-guru-mapel/';
-	// 		$_SESSION['sessionAlert'] = "Data berhasil ditambah !!";
-	// 		header("Location: $url");
-	// 	} else
-	// 	{
-	// 		$isError = TRUE;
-	// 		$error = "gagal menyimpan ke database : " . mysqli_error($conn);
-	// 	}
-	// }
 }
 
 
