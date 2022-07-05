@@ -11,18 +11,7 @@ $pageName = "data-penjadwalan";
 
 $conn = open_connection();
 
-// $query = ("SELECT tb_guru_mapel.kode_gmp, tb_guru.nama_guru, tb_mapel.nama_mapel, tb_jurusan.nama_jurusan FROM tb_guru_mapel
-// 	INNER JOIN tb_guru
-// 	ON tb_guru_mapel.kode_guru = tb_guru.kode_guru
-// 	INNER JOIN tb_mapel
-// 	ON tb_guru_mapel.kode_mapel = tb_mapel.kode_mapel
-// 	INNER JOIN tb_jurusan
-// 	ON tb_guru_mapel.kode_jurusan_mapel = tb_jurusan.nama_jurusan");
-
-// $query = ("SELECT kode_jadwal.tb_jadwal, nama_hari.tb_hari, kelas.tb_jadwal, kode_gmp.tb_jadwal, kode_sesi.tb_jadwal FROM tb_jadwal INNER JOIN tb_hari	ON tb_jadwal.kode_hari = tb_hari.kode_hari");
-
 $query = ("SELECT tb_jadwal.kode_jadwal, tb_hari.nama_hari, tb_jadwal.kelas, tb_jadwal.kode_gmp, tb_jadwal.kode_sesi, tb_sesi.jam_mulai, tb_sesi.jam_selesai, tb_jurusan.nama_jurusan FROM tb_jadwal INNER JOIN tb_hari ON tb_jadwal.kode_hari = tb_hari.kode_hari, tb_sesi, tb_jurusan, tb_kelas WHERE tb_sesi.kode_sesi = tb_jadwal.kode_sesi AND tb_jadwal.kelas = tb_kelas.kode_kelas AND tb_kelas.jurusan = tb_jurusan.kode_jurusan ORDER BY tb_jadwal.kode_hari, tb_jadwal.kelas, tb_sesi.id ASC");
-
 
 $dataPenjadwalan = mysqli_query($conn, $query);
 $i = 1;
@@ -34,7 +23,7 @@ $i = 1;
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Data Guru Penjadwalan | <?= $siteName ?></title>
+	<title>Data Penjadwalan | <?= $siteName ?></title>
 	<link rel="icon" type="image/x-icon" href="../assets/img/tutwurihandayani-logo.png">
 
 	<?php 
@@ -128,7 +117,7 @@ $i = 1;
 						</div>
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="#">Home</a></li>
+								<li class="breadcrumb-item"><a href="<?= BASE_URL ?>">Home</a></li>
 								<li class="breadcrumb-item active">Data Penjadwalan</li>
 							</ol>
 						</div>
@@ -342,7 +331,7 @@ $i = 1;
 				"autoWidth": false,
 				"ordering": false,
 				// "info": true,
-				"dom" : "<'row'<'col-sm-12'B>>" +
+				"dom" : 
 				"<'row'<'col-sm-6'l><'col-sm-6'f>>" +
 				"<'row'<'col-sm-12'tr>>" +
 				"<'row'<'col-sm-5'i><'col-sm-7'p>>",

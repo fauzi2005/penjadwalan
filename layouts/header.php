@@ -6,13 +6,22 @@
 			<a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
 		</li>
 		<li class="nav-item d-none d-sm-inline-block">
-			<a href="index3.html" class="nav-link">Home</a>
+			<?php
+			$subMenuActive = "";
+			if ($pageName == "dashboard") {
+				$subMenuActive = "active";
+			}
+			?>
+			<a href="<?= BASE_URL ?>" class="nav-link <?= $subMenuActive ?>">Home</a>
 		</li>
 		<li class="nav-item d-none d-sm-inline-block">
-			<a href="#" class="nav-link">About Us</a>
-		</li>
-		<li class="nav-item d-none d-sm-inline-block">
-			<a href="#" class="nav-link">Contact</a>
+			<?php
+			$subMenuActive = "";
+			if ($pageName == "team") {
+				$subMenuActive = "active";
+			}
+			?>
+			<a href="<?= BASE_URL ?>team/" class="nav-link <?= $subMenuActive ?>">Team / Contact</a>
 		</li>
 	</ul>
 
@@ -54,5 +63,5 @@
 <!-- Control Sidebar -->
 <!-- <aside class="control-sidebar control-sidebar-dark"> -->
 	<!-- Control sidebar content goes here -->
-<!-- </aside> -->
+	<!-- </aside> -->
 <!-- /.control-sidebar -->

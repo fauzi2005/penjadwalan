@@ -157,21 +157,24 @@
 					</ul>
 				</li>
 				<li class="nav-item">
-					<a href="#" class="nav-link">
+					<?php
+					$subMenuActive = "";
+					if ($pageName == "report") {
+						$subMenuActive = "active";
+					}
+					?>
+					<a href="<?= BASE_URL . 'report/' ?>" class="nav-link <?= $subMenuActive ?>">
 						<i class="nav-icon fas fa-chart-pie"></i>
-						<p>
-							Report
-							<i class="right fas fa-angle-left"></i>
-						</p>
+						<p>Report</p>
 					</a>
-					<ul class="nav nav-treeview">
+					<!-- <ul class="nav nav-treeview">
 						<li class="nav-item">
 							<a href="#" class="nav-link">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Jadwal Mata Pelajaran</p>
 							</a>
 						</li>
-					</ul>
+					</ul> -->
 				</li>
 
 				<br><br>

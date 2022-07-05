@@ -102,8 +102,8 @@ if(isset($_POST['submit']))
 						</div>
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="#">Home</a></li>
-								<li class="breadcrumb-item"><a href="#">Data Jurusan</a></li>
+								<li class="breadcrumb-item"><a href="<?= BASE_URL ?>">Home</a></li>
+								<li class="breadcrumb-item"><a href="<?= BASE_URL ?>data-jurusan/">Data Jurusan</a></li>
 								<li class="breadcrumb-item active">Tambah Data Jurusan</li>
 							</ol>
 						</div>

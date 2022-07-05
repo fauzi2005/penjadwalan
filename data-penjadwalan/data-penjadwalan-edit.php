@@ -47,7 +47,7 @@ if($data_found && isset($_POST['submit']))
 {
 	if ($kode_jadwal == '') {
 		$isError = TRUE;
-		$error .= '<div>Kode Guru Mata Pelajaran Harap Diisi !!</div>';
+		$error .= '<div>Kode Penjadwalan Harap Diisi !!</div>';
 	}
 	if ($kode_guru == '') {
 		$isError = TRUE;
@@ -70,7 +70,7 @@ if($data_found && isset($_POST['submit']))
 
 		if ($hasil)
 		{
-			$url = BASE_URL . 'data-guru-mapel/';
+			$url = BASE_URL . 'data-penjadwalan/';
 			$_SESSION['sessionAlert'] = "Data berhasil diupdate !!";
 			header("Location: $url");
 		} else
@@ -90,7 +90,7 @@ if($data_found && isset($_POST['submit']))
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Edit Data Guru Mata Pelajaran | <?= $siteName ?></title>
+	<title>Edit Data Penjadwalan | <?= $siteName ?></title>
 	<link rel="icon" type="image/x-icon" href="../assets/img/tutwurihandayani-logo.png">
 
 	<?php 
@@ -132,8 +132,8 @@ if($data_found && isset($_POST['submit']))
 						</div>
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="#">Home</a></li>
-								<li class="breadcrumb-item"><a href="#">Data Guru</a></li>
+								<li class="breadcrumb-item"><a href="<?= BASE_URL ?>">Home</a></li>
+								<li class="breadcrumb-item"><a href="<?= BASE_URL ?>data-penjadwalan/">Data Guru</a></li>
 								<li class="breadcrumb-item active">Edit Data Guru</li>
 							</ol>
 						</div>
@@ -157,7 +157,7 @@ if($data_found && isset($_POST['submit']))
 								</div>
 								<!-- /.card-header -->
 								<?php
-								include "form-data-guru-mapel.php";
+								include "form-data-penjadwalan.php";
 								?>
 							</div>
 							<!-- /.card -->

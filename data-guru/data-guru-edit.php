@@ -150,8 +150,8 @@ if($data_found && isset($_POST['submit']))
 						</div>
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="#">Home</a></li>
-								<li class="breadcrumb-item"><a href="#">Data Guru</a></li>
+								<li class="breadcrumb-item"><a href="<?= BASE_URL ?>">Home</a></li>
+								<li class="breadcrumb-item"><a href="<?= BASE_URL ?>data-guru/">Data Guru</a></li>
 								<li class="breadcrumb-item active">Edit Data Guru</li>
 							</ol>
 						</div>

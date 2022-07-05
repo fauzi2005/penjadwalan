@@ -92,7 +92,7 @@ if(isset($_POST['submit'])) {
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Tambah Data Guru Mata Pelajaran | <?= $siteName ?></title>
+	<title>Tambah Data Oenjadwalan | <?= $siteName ?></title>
 	<link rel="icon" type="image/x-icon" href="<?= BASE_URL ?>assets/img/tutwurihandayani-logo.png">
 
 	<?php 
@@ -144,13 +144,13 @@ if(isset($_POST['submit'])) {
 						<div class="row mb-2">
 							<div class="col-sm-6">
 								<!-- Judul Pages -->
-								<h1 class="m-0">Tambah Data Mata Pelajaran</h1>
+								<h1 class="m-0">Tambah Data Penjadwalan</h1>
 							</div>
 							<div class="col-sm-6">
 								<ol class="breadcrumb float-sm-right">
-									<li class="breadcrumb-item"><a href="#">Home</a></li>
-									<li class="breadcrumb-item"><a href="#">Data Mata Pelajaran</a></li>
-									<li class="breadcrumb-item active">Tambah Data Mata Pelajaran</li>
+									<li class="breadcrumb-item"><a href="<?= BASE_URL ?>">Home</a></li>
+									<li class="breadcrumb-item"><a href="<?= BASE_URL ?>data-penjadwalan/">Data Penjadwalan</a></li>
+									<li class="breadcrumb-item active">Tambah Data Penjadwalan</li>
 								</ol>
 							</div>
 						</div>

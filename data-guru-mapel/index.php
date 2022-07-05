@@ -131,7 +131,7 @@ $i = 1;
 						</div>
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="#">Home</a></li>
+								<li class="breadcrumb-item"><a href="<?= BASE_URL ?>">Home</a></li>
 								<li class="breadcrumb-item active">Data Mata Pelajaran</li>
 							</ol>
 						</div>
@@ -164,7 +164,7 @@ $i = 1;
 									<table id="dataTable" class="table table-bordered table-striped">
 										<thead>
 											<tr>
-												<!-- <th>Kode Mata Pelajaran</th> -->
+												<!-- <th>Kode GMP</th> -->
 												<th>Nama Guru</th>
 												<th>Mata Pelajaran</th>
 												<th>Jurusan</th>
@@ -273,7 +273,7 @@ $i = 1;
 				"autoWidth": false,
 				// "ordering": true,
 				// "info": true,
-				"dom" : "<'row'<'col-sm-12'B>>" +
+				"dom" : 
 				"<'row'<'col-sm-6'l><'col-sm-6'f>>" +
 				"<'row'<'col-sm-12'tr>>" +
 				"<'row'<'col-sm-5'i><'col-sm-7'p>>",

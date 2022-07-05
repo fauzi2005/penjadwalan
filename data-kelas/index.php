@@ -115,7 +115,7 @@ $i = 1;
 						</div>
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="#">Home</a></li>
+								<li class="breadcrumb-item"><a href="<?= BASE_URL ?>">Home</a></li>
 								<li class="breadcrumb-item active">Data Kelas</li>
 							</ol>
 						</div>
@@ -205,7 +205,8 @@ $i = 1;
 				"autoWidth": false,
 				// "ordering": true,
 				// "info": true,
-				"dom" : "<'row'<'col-sm-12'B>>" +
+				"dom" :
+				// "<'row'<'col-sm-12'B>>" +
 				"<'row'<'col-sm-6'l><'col-sm-6'f>>" +
 				"<'row'<'col-sm-12'tr>>" +
 				"<'row'<'col-sm-5'i><'col-sm-7'p>>",

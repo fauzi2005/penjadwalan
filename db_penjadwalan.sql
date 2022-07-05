@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 24, 2022 at 11:18 AM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 8.0.3
+-- Generation Time: Jul 05, 2022 at 06:51 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -43,7 +43,14 @@ CREATE TABLE `tb_guru` (
 --
 
 INSERT INTO `tb_guru` (`kode_guru`, `nip_guru`, `nama_guru`, `gelar_guru`, `gender_guru`, `alamat_guru`, `no_hp_guru`, `email_guru`) VALUES
-('s2ish', '3175072005980007', 'Fauzi Maulana Habibi', 'S.Kom', 'Laki-laki', 'Kp. Pertanian Utara No.10A RT008 RW01, Kel. Klender', '085776509645', 'fauzimaulanahabibi@gmail.com');
+('adeng123', '201943501253', 'Adeng Nugraha', 'S.Kom', 'Laki-laki', 'Jakpus', '087632512369', 'adengnugraha@gmail.com'),
+('and123', '201943501259', 'Andi Ami', 'S.Kom', 'Laki-laki', 'Jakpus', '087123651422', 'andiami@gmail.com'),
+('anwar123', '201943501275', 'Isnaini Anwar Sanusi', 'S.Kom', 'Laki-laki', 'Jakpus', '089664271520', 'isnainianwarsanusi@gmail.com'),
+('dhimas123', '201943501304', 'Dhimas Ramadhan', 'S.Kom', 'Laki-laki', 'Jaktim', '089236566121', 'dhimasramadhan@gmail.com'),
+('farras123', '201943501220', 'Farras Akbar', 'S.Kom', 'Laki-laki', 'Jakpus', '087526162314', 'farrasakbar@gmail.com'),
+('jordy123', '201943501285', 'Jordy Ritzq', 'S.Kom', 'Laki-laki', 'Jakpus', '089827661234', 'jordyritzq@gmail.com'),
+('rifqi123', '201943501992', 'Muhammad Rifqi Muzhaffar', 'S.Kom', 'Laki-laki', 'Jaktim', '081237516527', 'muhammadrifqimuzhaffar@gmail.c'),
+('s2ish', '201943501203', 'Fauzi Maulana Habibi', 'S.Kom', 'Laki-laki', 'Jaktim', '085776509645', 'fauzimaulanahabibi@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -87,6 +94,37 @@ INSERT INTO `tb_hari` (`kode_hari`, `nama_hari`) VALUES
 ('h3', 'Rabu'),
 ('h4', 'Kamis'),
 ('h5', 'Jumat');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_jadwal`
+--
+
+CREATE TABLE `tb_jadwal` (
+  `kode_jadwal` int(100) NOT NULL,
+  `kode_hari` varchar(100) NOT NULL,
+  `kelas` varchar(100) NOT NULL,
+  `kode_gmp` varchar(100) NOT NULL,
+  `kode_sesi` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tb_jadwal`
+--
+
+INSERT INTO `tb_jadwal` (`kode_jadwal`, `kode_hari`, `kelas`, `kode_gmp`, `kode_sesi`) VALUES
+(32, 'h1', '10ap', '4', 'sesi1'),
+(33, 'h1', '10ap', '4', 'sesi2'),
+(34, 'h1', '10ap', '4', 'sesi3'),
+(35, 'h1', '10ap', 'Istirahat', 'rest1'),
+(36, 'h1', '10ap', '5', 'sesi4'),
+(37, 'h1', '10ap', '5', 'sesi5'),
+(38, 'h1', '10ap', '5', 'sesi6'),
+(39, 'h1', '10ap', 'Istirahat', 'rest2'),
+(40, 'h1', '10ap', '4', 'sesi7'),
+(41, 'h1', '10ap', '5', 'sesi8'),
+(42, 'h1', '10ap', '4', 'sesi9');
 
 -- --------------------------------------------------------
 
@@ -313,6 +351,12 @@ ALTER TABLE `tb_guru_mapel`
   ADD PRIMARY KEY (`kode_gmp`);
 
 --
+-- Indexes for table `tb_jadwal`
+--
+ALTER TABLE `tb_jadwal`
+  ADD PRIMARY KEY (`kode_jadwal`);
+
+--
 -- Indexes for table `tb_jurusan`
 --
 ALTER TABLE `tb_jurusan`
@@ -339,6 +383,12 @@ ALTER TABLE `tb_users`
 --
 ALTER TABLE `tb_guru_mapel`
   MODIFY `kode_gmp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `tb_jadwal`
+--
+ALTER TABLE `tb_jadwal`
+  MODIFY `kode_jadwal` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `tb_jurusan`
